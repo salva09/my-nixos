@@ -8,38 +8,9 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./boot-configuration.nix
+      ./desktop-environment.nix
     ];
-
-  # Bootloader.
-  boot = {
-    plymouth = {
-      enable = true;
-      theme = "bgrt";
-    };
-
-    consoleLogLevel = 3;
-    initrd = {
-      systemd.enable = true;
-      verbose = false;
-    };
-    kernelParams = [
-      "quiet"
-      "splash"
-      "boot.shell_on_fail"
-      "udev.log_priority=3"
-      "rd.systemd.show_status=auto"
-    ];
-    
-    loader = {
-      systemd-boot = {
-        enable = true;
-        consoleMode = "auto";
-        configurationLimit = 3;
-      };
-      efi.canTouchEfiVariables = true;
-      timeout = 0;
-    };
-  };
 
   networking.hostName = "nixos-ms7e24"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -56,20 +27,6 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.excludePackages = [ pkgs.xterm ];
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
   
   services.udev.packages = with pkgs; [
     game-devices-udev-rules
@@ -113,13 +70,6 @@
 
   documentation.nixos.enable = false;
   
-  environment.gnome.excludePackages = with pkgs; [ 
-    gnome-tour
-    gnome-software
-    geary
-    gnome-music
-  ];
-  
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;
@@ -129,13 +79,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     distrobox
-    
-    # Gnome extensions
-    gnomeExtensions.vertical-workspaces
-    gnomeExtensions.caffeine
-    gnomeExtensions.appindicator
-    gnomeExtensions.gsconnect
-    gnomeExtensions.grand-theft-focus
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
