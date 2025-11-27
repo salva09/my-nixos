@@ -12,7 +12,7 @@
       ./desktop-environment.nix
     ];
 
-  networking.hostName = "nixos-ms7e24"; # Define your hostname.
+  networking.hostName = "salvas-desktop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
