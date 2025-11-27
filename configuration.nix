@@ -5,12 +5,7 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./boot-configuration.nix
-      ./desktop-environment.nix
-    ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = "salvas-desktop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
