@@ -23,6 +23,9 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   
+  services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
+  
   services.udev.packages = with pkgs; [
     game-devices-udev-rules
   ];
