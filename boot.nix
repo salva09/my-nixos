@@ -2,10 +2,6 @@
 
 {
   boot = {
-    kernelPackages = pkgs.linuxPackages;
-    kernelModules = [ "kvm-amd" ];
-    extraModulePackages = [ ];
-    
     kernelParams = [
       "quiet"
       "splash"

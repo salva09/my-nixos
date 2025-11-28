@@ -4,6 +4,12 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
+  networking.hostName = "salvas-desktop";
+  
+  kernelPackages = pkgs.linuxPackages;
+  kernelModules = [ "kvm-amd" ];
+  extraModulePackages = [ ];
+  
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];

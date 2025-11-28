@@ -7,7 +7,6 @@
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  networking.hostName = "salvas-desktop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -56,16 +55,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.salva = {
-    isNormalUser = true;
-    description = "Salva HG";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    #  thunderbird
-    ];
-  };
-
   documentation.nixos.enable = false;
   
   virtualisation.podman = {
@@ -77,22 +66,11 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     distrobox
-    fish
   ];
   
   environment.sessionVariables = {
     SSH_AUTH_SOCK = "$HOME/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock";
   };
-  
-  programs.bash = {
-  interactiveShellInit = ''
-    if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
-    then
-      shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
-      exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
-    fi
-  '';
-};
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
