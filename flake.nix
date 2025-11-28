@@ -2,13 +2,24 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
+    niri = {
+      url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    dgop = {
+      url = "github:AvengeMedia/dgop";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dankMaterialShell = {
+      url = "github:AvengeMedia/DankMaterialShell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.dgop.follows = "dgop";
     };
   };
   
-  outputs = { self, nixpkgs }: {
+  outputs = inputs@{ self, nixpkgs, ... }: {
     nixosConfigurations = {
       salvas-desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -23,11 +34,12 @@
       
       salvas-laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
         modules = [
           ./hardware/salvas-laptop.nix
           ./boot.nix
           ./default.nix
-          ./desktop/noctalia.nix
+          ./desktop/dms.nix
           ./user/salva.nix
         ];
       };
