@@ -5,6 +5,7 @@
   
   security.polkit.enable = true; # polkit
   services.gnome.gnome-keyring.enable = true; # secret service
+  services.gnome.core-apps.enable = true;
   
   # import the nixos module
   imports = [
