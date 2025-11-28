@@ -22,5 +22,6 @@
     gnomeExtensions.gsconnect
     gnomeExtensions.grand-theft-focus
     gnomeExtensions.advanced-alttab-window-switcher
+    gnomeExtensions.tiling-shell
   ];
 }

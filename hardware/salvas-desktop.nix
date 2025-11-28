@@ -6,9 +6,9 @@
 {
   networking.hostName = "salvas-desktop";
   
-  kernelPackages = pkgs.linuxPackages;
-  kernelModules = [ "kvm-amd" ];
-  extraModulePackages = [ ];
+  boot.kernelPackages = pkgs.linuxPackages;
+  boot.kernelModules = [ "kvm-amd" ];
+  boot.extraModulePackages = [ ];
   
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
