@@ -1,6 +1,11 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   
   outputs = { self, nixpkgs }: {
@@ -22,7 +27,7 @@
           ./hardware/salvas-laptop.nix
           ./boot.nix
           ./default.nix
-          ./desktop/plasma.nix
+          ./desktop/noctalia.nix
           ./user/salva.nix
         ];
       };
