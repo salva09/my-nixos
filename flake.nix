@@ -18,11 +18,11 @@
       
       salvas-laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [ 
-          ./default.nix
+        modules = [
+          ./hardware/salvas-laptop.nix
           ./boot.nix
-          ./hardware/salvas-desktop.nix
-          ./desktop/gnome.nix
+          ./default.nix
+          ./desktop/plasma.nix
           ./user/salva.nix
         ];
       };
