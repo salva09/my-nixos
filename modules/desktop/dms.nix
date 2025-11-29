@@ -11,7 +11,7 @@
 
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
   programs.niri.enable = true;
-  programs.niri.package = pkgs.niri-stable;
+  programs.niri.package = pkgs.niri-unstable;
 
   programs.dankMaterialShell = {
     enable = true;
@@ -53,6 +53,14 @@
           "${config.home.homeDirectory}/.config/niri/dms/layout.kdl"
           "${config.home.homeDirectory}/.config/niri/dms/wpblur.kdl"
         ];
+
+        binds = {
+          "Mod+Shift+E".action.quit.skip-confirmation = true;
+        };
+
+        hotkey-overlay.skip-at-startup = true;
+
+        cursor.theme = "Adwaita";
       };
 
       gtk = {
