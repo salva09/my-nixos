@@ -12,7 +12,7 @@
 
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
   programs.niri.enable = true;
-  programs.niri.package = pkgs.niri-unstable;
+  programs.niri.package = pkgs.niri-stable;
 
   programs.dankMaterialShell = {
     enable = true;
@@ -43,6 +43,8 @@
     enableCalendarEvents = true;       # Calendar integration (khal)
     enableSystemSound = true;          # System sound effects
   };
+
+  services.gnome.core-apps.enable = true;
 
   systemd.user.services.niri-flake-polkit.enable = false;
 }
