@@ -58,13 +58,15 @@
     distrobox
   ];
   
-  networking.firewall.allowedTCPPorts = [
-    # Localsend port
-    53317
+  networking.firewall.allowedTCPPorts = [ 
+    53317 # Localsend
+    27036 27037 # Steam Remote Play
+    27040 # Steam Local Network Transfer
   ];
-  networking.firewall.allowedUDPPorts = [
-    # Localsend port
-    53317
+  networking.firewall.allowedUDPPorts = [ 
+    53317 # Localsend
+    27031 27036 # Steam Remote Play
+    4380 # Steam Discovery
   ];
   networking.firewall.enable = true;
   
