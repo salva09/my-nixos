@@ -4,8 +4,6 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  networking.hostName = "salvas-laptop";
-  
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "kvm-amd" ];
   boot.initrd.kernelModules = [ "amdgpu" ];

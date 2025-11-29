@@ -6,34 +6,27 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # ... other inputs (noctalia, niri, etc) ...
   };
   
   outputs = inputs@{ self, nixpkgs, ... }: {
     nixosConfigurations = {
+      
+      # Desktop Host
       salvas-desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
-        modules = [ 
-          ./hardware/salvas-desktop.nix
-          ./boot.nix
-          ./default.nix
-          ./user/home.nix
-          ./user/salva.nix
-          ./desktop/gnome.nix
-          ./flatpak.nix
-        ];
+        # Point to ONE file. That file imports everything else.
+        modules = [ ./hosts/salvas-desktop/default.nix ];
       };
       
+      # Laptop Host
       salvas-laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [
-          ./hardware/salvas-laptop.nix
-          ./boot.nix
-          ./default.nix
-          ./desktop/plasma.nix
-          ./user/salva.nix
-        ];
+        specialArgs = { inherit inputs; }; # FIX: You were missing this on laptop!
+        modules = [ ./hosts/salvas-laptop/default.nix ];
       };
+      
     };
   };
 }

@@ -1,8 +1,6 @@
 { config, lib, pkgs, modulesPath, ... }:
 
-{
-  networking.hostName = "salvas-desktop";
-  
+{  
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.kernelModules = [ "kvm-amd" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
