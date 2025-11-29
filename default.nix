@@ -33,8 +33,6 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = false;
-  
-  services.flatpak.enable = true;
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -65,6 +63,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    git
     distrobox
   ];
   
