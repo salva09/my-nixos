@@ -4,8 +4,12 @@
   imports = [
     inputs.niri.nixosModules.niri
     inputs.dankMaterialShell.nixosModules.dankMaterialShell
-    #inputs.dankMaterialShell.nixosModules.dankMaterialShell.niri
     inputs.dankMaterialShell.nixosModules.greeter
+  ];
+  
+  home-manager.sharedModules = [
+    inputs.dankMaterialShell.homeModules.dankMaterialShell.default
+    inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
   ];
 
   services.displayManager.gdm.enable = true;
@@ -16,11 +20,6 @@
 
   programs.dankMaterialShell = {
     enable = true;
-
-    # niri = {
-    #   enableKeybinds = true;   # Automatic keybinding configuration
-    #   enableSpawn = true;      # Auto-start DMS with niri
-    # };
 
     systemd = {
       enable = true;             # Systemd service for auto-start
