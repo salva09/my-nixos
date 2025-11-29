@@ -16,11 +16,6 @@
   programs.dankMaterialShell = {
     enable = true;
 
-    systemd = {
-      enable = true;             # Systemd service for auto-start
-      restartIfChanged = true;   # Auto-restart dms.service when dankMaterialShell changes
-    };
-
     greeter = {
       enable = false;
       compositor.name = "niri";  # Or "hyprland" or "sway"
@@ -37,7 +32,7 @@
     enableCalendarEvents = true;       # Calendar integration (khal)
     enableSystemSound = true;          # System sound effects
   };
-  
+
   home-manager.sharedModules = [
     inputs.dankMaterialShell.homeModules.dankMaterialShell.default
     inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
@@ -45,13 +40,58 @@
       programs.dankMaterialShell = {
         enable = true;
         niri = {
-          enableKeybinds = true;
+          # enableKeybinds = true;
+          enableSpawn = true;
+        };
+      };
+
+      programs.niri.settings = {
+        include = [
+          "${config.home.homeDirectory}/.config/niri/dms/binds.kdl"
+          "${config.home.homeDirectory}/.config/niri/dms/alttab.kdl"
+          "${config.home.homeDirectory}/.config/niri/dms/colors.kdl"
+          "${config.home.homeDirectory}/.config/niri/dms/layout.kdl"
+          "${config.home.homeDirectory}/.config/niri/dms/wpblur.kdl"
+        ];
+      };
+
+      gtk = {
+        enable = true;
+        theme = {
+          name = "adw-gtk3";
+          package = pkgs.adw-gtk3;
+        };
+        cursorTheme = {
+          name = "Adwaita";
+          package = pkgs.adwaita-icon-theme;
+        };
+        font = {
+          name = "Adwaita";
+          package = pkgs.adwaita-fonts;
         };
       };
     }
   ];
 
-  services.gnome.core-apps.enable = true;
-
   systemd.user.services.niri-flake-polkit.enable = false;
+
+  services.gnome.core-apps.enable = true;
+  environment.gnome.excludePackages = with pkgs; [
+    gnome-tour
+    gnome-user-docs
+    gnome-music
+    gnome-software
+    geary
+    gnome-console
+  ];
+
+  environment.systemPackages = with pkgs; [
+    ghostty
+  ];
+
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
+  ];
 }
