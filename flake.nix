@@ -16,15 +16,20 @@
       salvas-desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
-        # Point to ONE file. That file imports everything else.
         modules = [ ./hosts/salvas-desktop/default.nix ];
       };
       
       # Laptop Host
       salvas-laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs; }; # FIX: You were missing this on laptop!
+        specialArgs = { inherit inputs; };
         modules = [ ./hosts/salvas-laptop/default.nix ];
+      };
+      
+      vm = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [ ./hosts/vm/default.nix ];
       };
       
     };

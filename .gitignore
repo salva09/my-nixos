@@ -1,0 +1,6 @@
+# Ignore build results
+result
+result-*
+
+# Ignore VM disk images
+*.qcow2
