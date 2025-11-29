@@ -16,7 +16,7 @@
     
     # 4. User Config
     ../../users/hm-defaults.nix     # Was user/home.nix
-    ../../users/test.nix
+    ../../users/guest.nix
   ];
   
   networking.hostName = "vm";
