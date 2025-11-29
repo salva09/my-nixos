@@ -15,15 +15,10 @@
     initialPassword = "guest"; 
   };
 
-  # 2. Home Manager Configuration (Minimal)
   home-manager.users.guest = { pkgs, ... }: {
-    # We need a state version here too
     home.stateVersion = "25.11";
 
-    # Enable a shell so they can type commands
-    programs.bash = {
-      enable = true;
-      enableCompletion = true;
-    };
+    programs.bash.enable = true;
+    gtk.enable = true;
   };
 }

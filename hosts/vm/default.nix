@@ -7,8 +7,7 @@
     
     # 2. Core System Modules (Path to root)
     ../../modules/core/boot.nix
-    ../../modules/core/system.nix   # Was your old root default.nix
-    ../../modules/core/flatpak.nix
+    ../../modules/core/system.nix
     
     # 3. Desktop Environment
     ../../modules/desktop/plasma.nix
@@ -20,9 +19,6 @@
   ];
   
   networking.hostName = "vm";
-  
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "guest";
   
   # This config ONLY applies when you use 'build-vm'
   virtualisation.vmVariant = {
