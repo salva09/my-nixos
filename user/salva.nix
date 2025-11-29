@@ -52,13 +52,10 @@
     programs.git = {
       enable = true;
       
-      # CORRECT SYNTAX:
-      userName  = "Salva HG";
-      userEmail = "salva.hg01@gmail.com";
-      
-      # For other settings (like default branch, diff tools, etc.)
-      # use 'extraConfig'
-      extraConfig = {
+      settings = {
+        user.name  = "Salva HG";
+        user.email = "salva.hg01@gmail.com";
+
         init.defaultBranch = "main";
         pull.rebase = false;
       };
