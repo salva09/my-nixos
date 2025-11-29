@@ -6,7 +6,7 @@
 {
   networking.hostName = "salvas-desktop";
   
-  boot.kernelPackages = pkgs.linuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
   
