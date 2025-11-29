@@ -19,9 +19,12 @@
     gnomeExtensions.vertical-workspaces
     gnomeExtensions.caffeine
     gnomeExtensions.appindicator
-    gnomeExtensions.gsconnect
     gnomeExtensions.grand-theft-focus
     gnomeExtensions.advanced-alttab-window-switcher
-    gnomeExtensions.tiling-shell
   ];
+  
+  programs.kdeconnect = {
+    enable = true;
+    package = pkgs.gnomeExtensions.gsconnect;
+  };
 }
