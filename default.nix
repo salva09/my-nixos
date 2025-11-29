@@ -7,13 +7,10 @@
 { 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
-  # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
   time.timeZone = "America/Monterrey";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   
   services.power-profiles-daemon.enable = true;
@@ -27,10 +24,8 @@
   
   hardware.uinput.enable = true;
 
-  # Enable CUPS to print documents.
   services.printing.enable = false;
 
-  # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -38,7 +33,6 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
     jack.enable = true;
   };
 
@@ -49,17 +43,10 @@
     dockerCompat = true;
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     distrobox
   ];
   
-  environment.sessionVariables = {
-    SSH_AUTH_SOCK = "$HOME/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock";
-  };
-  
-  # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
     # Localsend port
     53317
@@ -68,7 +55,6 @@
     # Localsend port
     53317
   ];
-  # Or disable the firewall altogether.
   networking.firewall.enable = true;
   
   # This value determines the NixOS release from which the default
