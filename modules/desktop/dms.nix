@@ -6,11 +6,6 @@
     inputs.dankMaterialShell.nixosModules.dankMaterialShell
     inputs.dankMaterialShell.nixosModules.greeter
   ];
-  
-  home-manager.sharedModules = [
-    inputs.dankMaterialShell.homeModules.dankMaterialShell.default
-    inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
-  ];
 
   services.displayManager.gdm.enable = true;
 
@@ -42,6 +37,19 @@
     enableCalendarEvents = true;       # Calendar integration (khal)
     enableSystemSound = true;          # System sound effects
   };
+  
+  home-manager.sharedModules = [
+    inputs.dankMaterialShell.homeModules.dankMaterialShell.default
+    inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
+    {
+      programs.dankMaterialShell = {
+        enable = true;
+        niri = {
+          enableKeybinds = true;
+        };
+      };
+    }
+  ];
 
   services.gnome.core-apps.enable = true;
 
