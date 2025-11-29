@@ -46,14 +46,6 @@
       };
 
       programs.niri.settings = {
-        include = [
-          "${config.home.homeDirectory}/.config/niri/dms/binds.kdl"
-          "${config.home.homeDirectory}/.config/niri/dms/alttab.kdl"
-          "${config.home.homeDirectory}/.config/niri/dms/colors.kdl"
-          "${config.home.homeDirectory}/.config/niri/dms/layout.kdl"
-          "${config.home.homeDirectory}/.config/niri/dms/wpblur.kdl"
-        ];
-
         binds = {
           "Mod+Shift+E".action.quit.skip-confirmation = true;
         };
