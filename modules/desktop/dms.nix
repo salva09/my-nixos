@@ -70,7 +70,7 @@
           package = pkgs.adwaita-fonts;
         };
       };
-    }
+    })
   ];
 
   systemd.user.services.niri-flake-polkit.enable = false;
