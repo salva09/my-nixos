@@ -1,9 +1,7 @@
 { config, pkgs, inputs, ... }:
 
 {
-  imports = [
-    inputs.nix-flatpak.nixosModules.nix-flatpak
-  ];
+  imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];
 
   services.flatpak = {
     enable = true;
@@ -22,7 +20,7 @@
       "com.vysp3r.ProtonPlus"
       "io.github.Foldex.AdwSteamGtk"
       "io.github.pol_rivero.github-desktop-plus"
-      "io.github.tobagin.karere"
+      "com.rtosta.zapzap"
       "io.github.wivrn.wivrn"
       "org.blender.Blender"
       "org.godotengine.Godot"
@@ -43,5 +41,12 @@
       "org.gnome.Boxes"
       "de.haeckerfelix.Fragments"
     ];
+    overrides = {
+      global = {
+        Context.filesystems = [
+          "/mnt/data"
+        ];
+      };
+    };
   };
 }
