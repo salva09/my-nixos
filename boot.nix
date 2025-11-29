@@ -10,12 +10,13 @@
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
       "udev.log_priority=3"
+      "vt.global_cursor_default=0"
     ];
 
     loader = {
       systemd-boot = {
         enable = true;
-        consoleMode = "max";
+        consoleMode = "keep";
         configurationLimit = 5;
       };
       efi.canTouchEfiVariables = true;
