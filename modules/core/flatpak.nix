@@ -46,12 +46,12 @@
         Context.filesystems = [
           "/mnt/data"
         ];
-        
+
         Environment = {
           "ELECTRON_OZONE_PLATFORM_HINT" = "auto";
         };
       };
-      
+
       "com.valvesoftware.Steam" = {
         Context.filesystems = [
           "!xdg-music"

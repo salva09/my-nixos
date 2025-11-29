@@ -7,7 +7,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "kvm-amd" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
-  
+
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];

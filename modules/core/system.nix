@@ -17,22 +17,22 @@
       options = "--delete-older-than 7d";
     };
   };
-  
+
   networking.networkmanager.enable = true;
 
   time.timeZone = "America/Monterrey";
 
   i18n.defaultLocale = "en_US.UTF-8";
-  
+
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
-  
+
   programs.gamemode.enable = true;
-  
+
   services.udev.packages = with pkgs; [
     game-devices-udev-rules
   ];
-  
+
   hardware.uinput.enable = true;
 
   services.printing.enable = false;
@@ -48,7 +48,7 @@
   };
 
   documentation.nixos.enable = false;
-  
+
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;
@@ -57,19 +57,19 @@
   environment.systemPackages = with pkgs; [
     distrobox
   ];
-  
-  networking.firewall.allowedTCPPorts = [ 
+
+  networking.firewall.allowedTCPPorts = [
     53317 # Localsend
     27036 27037 # Steam Remote Play
     27040 # Steam Local Network Transfer
   ];
-  networking.firewall.allowedUDPPorts = [ 
+  networking.firewall.allowedUDPPorts = [
     53317 # Localsend
     27031 27036 # Steam Remote Play
     4380 # Steam Discovery
   ];
   networking.firewall.enable = true;
-  
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

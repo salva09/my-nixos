@@ -2,20 +2,20 @@
 
 {
   programs.fish.enable = true;
-  
+
   users.users.salva = {
     isNormalUser = true;
     description = "Salva";
-    
+
     shell = pkgs.fish;
-    
-    extraGroups = [ 
+
+    extraGroups = [
       "networkmanager"
       "wheel"
       "gamemode"
     ];
   };
-  
+
   home-manager.users.salva = { pkgs, config, ... }:
   let
     flatpakApps = [
@@ -36,9 +36,9 @@
       git
       nerd-fonts.adwaita-mono
     ];
-    
+
     fonts.fontconfig.enable = true;
-    
+
     programs.fish = {
       enable = true;
 
@@ -55,10 +55,10 @@
         { name = "tide"; src = pkgs.fishPlugins.tide.src; }
       ];
     };
-    
+
     programs.git = {
       enable = true;
-      
+
       settings = {
         user.name  = "Salva HG";
         user.email = "salva.hg01@gmail.com";
@@ -67,12 +67,12 @@
         pull.rebase = false;
       };
     };
-    
+
     xdg.userDirs = {
       enable = true;
       createDirectories = false;
     };
-    
+
     home.file = {
       "Downloads".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Downloads";
       "Documents".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Documents";
@@ -81,7 +81,7 @@
       "Videos".source    = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Videos";
       "Games".source     = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Games";
     } // builtins.listToAttrs (map linkFlatpak flatpakApps);
-    
+
     # The state version is required and should stay at the version you
     # originally installed.
     home.stateVersion = "25.11";

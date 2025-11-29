@@ -1,10 +1,10 @@
 { config, lib, pkgs, modulesPath, ... }:
 
-{  
+{
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.kernelModules = [ "kvm-amd" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
-  
+
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
@@ -13,7 +13,7 @@
     { device = "/dev/disk/by-uuid/47aab21e-761c-4c95-b852-823ba50a93c1";
       fsType = "ext4";
     };
-    
+
   fileSystems."/mnt/data" =
     { device = "/dev/disk/by-uuid/8c47ea35-550b-47af-8b51-11007fa79e8a";
       fsType = "ext4";
