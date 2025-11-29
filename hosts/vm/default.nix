@@ -16,10 +16,13 @@
     
     # 4. User Config
     ../../users/hm-defaults.nix     # Was user/home.nix
-    ../../users/salva.nix
+    ../../users/test.nix
   ];
   
   networking.hostName = "vm";
+  
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "guest";
   
   # This config ONLY applies when you use 'build-vm'
   virtualisation.vmVariant = {

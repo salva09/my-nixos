@@ -4,9 +4,6 @@
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
   
-  services.displayManager.autoLogin.enable  = true;
-  services.displayManager.autoLogin.user = "salva";
-  
   services.gnome.core-apps.enable = true;
   services.gnome.core-developer-tools.enable = false;
   services.gnome.games.enable = false;

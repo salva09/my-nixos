@@ -21,6 +21,6 @@
   
   networking.hostName = "salvas-desktop";
   
-  # Any desktop-specific overrides can go here
-  # e.g. Specific monitor config, extra packages just for this PC
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "salva";
 }
