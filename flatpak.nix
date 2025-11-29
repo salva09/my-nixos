@@ -41,6 +41,7 @@
       "net.pixieditor.PixiEditor"
       "no.mifi.losslesscut"
       "org.gnome.Boxes"
+      "de.haeckerfelix.Fragments"
     ];
   };
 }

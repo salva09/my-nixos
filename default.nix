@@ -25,6 +25,8 @@
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
   
+  programs.gamemode.enable = true;
+  
   services.udev.packages = with pkgs; [
     game-devices-udev-rules
   ];
