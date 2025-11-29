@@ -36,7 +36,7 @@
   home-manager.sharedModules = [
     inputs.dankMaterialShell.homeModules.dankMaterialShell.default
     inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
-    {
+    ({ config, pkgs, ... }: {
       programs.dankMaterialShell = {
         enable = true;
         niri = {
