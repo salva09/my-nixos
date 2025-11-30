@@ -1,5 +1,8 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
+let
+  isDesktop = config.networking.hostName == "salvas-desktop";
+in
 {
   imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];
 
@@ -43,15 +46,13 @@
     ];
     overrides = {
       global = {
-        Context.filesystems = [
-          "/mnt/data"
-        ];
-        
+        Context.filesystems = lib.mkIf isDesktop [ "/mnt/data" ];
+
         Environment = {
           "ELECTRON_OZONE_PLATFORM_HINT" = "auto";
         };
       };
-      
+
       "com.valvesoftware.Steam" = {
         Context.filesystems = [
           "!xdg-music"

@@ -1,21 +1,24 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
-{
+let
+  isDesktop = config.networking.hostName == "salvas-desktop";
+in
+{  
   programs.fish.enable = true;
-  
+
   users.users.salva = {
     isNormalUser = true;
     description = "Salva";
-    
+
     shell = pkgs.fish;
-    
-    extraGroups = [ 
+
+    extraGroups = [
       "networkmanager"
       "wheel"
       "gamemode"
     ];
   };
-  
+
   home-manager.users.salva = { pkgs, config, ... }:
   let
     flatpakApps = [
@@ -36,9 +39,9 @@
       git
       nerd-fonts.adwaita-mono
     ];
-    
+
     fonts.fontconfig.enable = true;
-    
+
     programs.fish = {
       enable = true;
 
@@ -55,10 +58,10 @@
         { name = "tide"; src = pkgs.fishPlugins.tide.src; }
       ];
     };
-    
+
     programs.git = {
       enable = true;
-      
+
       settings = {
         user.name  = "Salva HG";
         user.email = "salva.hg01@gmail.com";
@@ -67,21 +70,32 @@
         pull.rebase = false;
       };
     };
-    
+
     xdg.userDirs = {
       enable = true;
-      createDirectories = false;
+      createDirectories = true;
     };
-    
-    home.file = {
-      "Downloads".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Downloads";
-      "Documents".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Documents";
-      "Music".source     = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Music";
-      "Pictures".source  = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Pictures";
-      "Videos".source    = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Videos";
-      "Games".source     = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Games";
-    } // builtins.listToAttrs (map linkFlatpak flatpakApps);
-    
+
+    # 3. THE FIX: Use mkMerge to handle the logic
+    home.file = lib.mkMerge [
+
+      # Block A: Logic for DESKTOP (The Symlinks)
+      (lib.mkIf isDesktop (
+        {
+          "Downloads".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Downloads";
+          "Documents".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Documents";
+          "Music".source     = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Music";
+          "Pictures".source  = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Pictures";
+          "Videos".source    = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Videos";
+          "Games".source     = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Games";
+        } // builtins.listToAttrs (map linkFlatpak flatpakApps)
+      ))
+
+      # Block B: Logic for LAPTOP (Optional)
+      # If you wanted specific laptop files, you could add:
+      # (lib.mkIf (!isDesktop) { ... })
+    ];
+
     # The state version is required and should stay at the version you
     # originally installed.
     home.stateVersion = "25.11";
