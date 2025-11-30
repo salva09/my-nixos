@@ -3,7 +3,7 @@
 let
   isDesktop = config.networking.hostName == "salvas-desktop";
 in
-{  
+{
   programs.fish.enable = true;
 
   users.users.salva = {
@@ -35,13 +35,6 @@ in
     };
   in
   {
-    home.packages = with pkgs; [
-      git
-      nerd-fonts.adwaita-mono
-    ];
-
-    fonts.fontconfig.enable = true;
-
     programs.fish = {
       enable = true;
 
@@ -76,10 +69,8 @@ in
       createDirectories = true;
     };
 
-    # 3. THE FIX: Use mkMerge to handle the logic
     home.file = lib.mkMerge [
 
-      # Block A: Logic for DESKTOP (The Symlinks)
       (lib.mkIf isDesktop (
         {
           "Downloads".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Downloads";

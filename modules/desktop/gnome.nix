@@ -46,4 +46,8 @@
     enable = true;
     package = pkgs.gnomeExtensions.gsconnect;
   };
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.adwaita-mono
+  ];
 }
