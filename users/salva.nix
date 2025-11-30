@@ -70,17 +70,7 @@ in
     };
 
     home.file = lib.mkMerge [
-
-      (lib.mkIf isDesktop (
-        {
-          "Downloads".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Downloads";
-          "Documents".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Documents";
-          "Music".source     = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Music";
-          "Pictures".source  = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Pictures";
-          "Videos".source    = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Videos";
-          "Games".source     = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Games";
-        } // builtins.listToAttrs (map linkFlatpak flatpakApps)
-      ))
+      (lib.mkIf isDesktop ( builtins.listToAttrs (map linkFlatpak flatpakApps) ) )
 
       # Block B: Logic for LAPTOP (Optional)
       # If you wanted specific laptop files, you could add:
