@@ -8,13 +8,29 @@
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.extraModulePackages = [ ];
 
+  # 1. The Root Subvolume (@)
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/47aab21e-761c-4c95-b852-823ba50a93c1";
-    fsType = "ext4";
+    device = "/dev/disk/by-uuid/284e44a0-103e-464b-957f-fb6495fc581d";
+    fsType = "btrfs";
+    options = [ "subvol=@" "compress=zstd" "noatime" ];
+  };
+
+  # 2. The Home Subvolume (@home)
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/284e44a0-103e-464b-957f-fb6495fc581d";
+    fsType = "btrfs";
+    options = [ "subvol=@home" "compress=zstd" "noatime" ];
+  };
+
+  # 3. The Nix Store Subvolume (@nix)
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/284e44a0-103e-464b-957f-fb6495fc581d";
+    fsType = "btrfs";
+    options = [ "subvol=@nix" "compress=zstd" "noatime" ];
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/5311-F2AA";
+    device = "/dev/disk/by-uuid/C0FB-B396";
     fsType = "vfat";
     options = [ "fmask=0077" "dmask=0077" ];
   };
