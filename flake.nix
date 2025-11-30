@@ -33,21 +33,21 @@
       salvas-desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
-        modules = [ ./hosts/salvas-desktop/default.nix ];
+        modules = [ ./hosts/salvas-desktop ];
       };
 
       # Laptop Host
       salvas-laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
-        modules = [ ./hosts/salvas-laptop/default.nix ];
+        modules = [ ./hosts/salvas-laptop ];
       };
 
       # Your VM Host
       vm = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
-        modules = [ ./hosts/vm/default.nix ];
+        modules = [ ./hosts/vm ];
       };
 
     };
