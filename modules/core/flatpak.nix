@@ -48,6 +48,10 @@ in
       "org.gnome.Boxes"
       "de.haeckerfelix.Fragments"
       "com.bitwarden.desktop"
+
+      # GTK Theme
+      "org.gtk.Gtk3theme.adw-gtk3"
+      "org.gtk.Gtk3theme.adw-gtk3-dark"
     ];
     overrides = {
       global = {

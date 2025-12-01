@@ -42,7 +42,7 @@
     inputs.dankMaterialShell.homeModules.dankMaterialShell.default
     inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
     (
-      { config, pkgs, ... }:
+      { pkgs, ... }:
       {
         programs.dankMaterialShell = {
           enable = true;
@@ -144,17 +144,24 @@
 
         gtk = {
           enable = true;
-          theme = {
-            name = "adw-gtk3";
-            package = pkgs.adw-gtk3;
-          };
-          cursorTheme = {
-            name = "Adwaita";
-            package = pkgs.adwaita-icon-theme;
-          };
-          font = {
-            name = "Adwaita";
-            package = pkgs.adwaita-fonts;
+
+          gtk3 = {
+            enable = true;
+
+            theme = {
+              name = "adw-gtk3";
+              package = pkgs.adw-gtk3;
+            };
+
+            cursorTheme = {
+              name = "Adwaita";
+              package = pkgs.adwaita-icon-theme;
+            };
+
+            font = {
+              name = "Adwaita";
+              package = pkgs.adwaita-fonts;
+            };
           };
         };
       }

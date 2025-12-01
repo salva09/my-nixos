@@ -46,6 +46,26 @@
     }
   ];
 
+  home-manager.sharedModules = [
+    (
+      { pkgs, ... }:
+      {
+        gtk = {
+          enable = true;
+
+          gtk3 = {
+            enable = true;
+
+            theme = {
+              name = "adw-gtk3";
+              package = pkgs.adw-gtk3;
+            };
+          };
+        };
+      }
+    )
+  ];
+
   programs.kdeconnect = {
     enable = true;
     package = pkgs.gnomeExtensions.gsconnect;
