@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, lib, ... }:
+{
+  config,
+  inputs,
+  lib,
+  ...
+}:
 
 let
   isDesktop = config.networking.hostName == "salvas-desktop";

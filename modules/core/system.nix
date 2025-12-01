@@ -2,13 +2,16 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   nix = {
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
     };
 
     gc = {
@@ -60,12 +63,14 @@
 
   networking.firewall.allowedTCPPorts = [
     53317 # Localsend
-    27036 27037 # Steam Remote Play
+    27036
+    27037 # Steam Remote Play
     27040 # Steam Local Network Transfer
   ];
   networking.firewall.allowedUDPPorts = [
     53317 # Localsend
-    27031 27036 # Steam Remote Play
+    27031
+    27036 # Steam Remote Play
     4380 # Steam Discovery
   ];
   networking.firewall.enable = true;

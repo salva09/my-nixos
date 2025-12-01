@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -14,7 +14,7 @@
     ../../modules/desktop/dms.nix # Easy to toggle here!
 
     # 4. User Config
-    ../../users/hm-defaults.nix     # Was user/home.nix
+    ../../users/hm-defaults.nix # Was user/home.nix
     ../../users/guest.nix
   ];
 
@@ -25,8 +25,8 @@
     # 1. Give it more RAM and Cores
     virtualisation = {
       memorySize = 4096; # 4GB RAM
-      cores = 4;         # 4 CPU Cores
-      graphics = true;   # Ensure it has a screen
+      cores = 4; # 4 CPU Cores
+      graphics = true; # Ensure it has a screen
     };
 
     # 2. Fix Resolution (Optional)

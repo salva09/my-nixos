@@ -1,4 +1,8 @@
-{ config, pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   services.displayManager.gdm.enable = true;
@@ -31,7 +35,7 @@
           experimental-features = [
             "scale-monitor-framebuffer" # Enables fractional scaling (125% 150% 175%)
             "variable-refresh-rate" # Enables Variable Refresh Rate (VRR) on compatible displays
-            "xwayland-native-scaling" # Scales Xwayland applications to look crisp on HiDPI screens
+            #"xwayland-native-scaling" # Enable on gnome 50 for some essential fixes
           ];
           check-alive-timeout = lib.gvariant.mkUint32 10000;
         };
