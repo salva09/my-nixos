@@ -45,7 +45,7 @@ in
     {
       home.packages = with pkgs; [
         zed-editor
-        nil
+        nixd
       ];
 
       home.sessionVariables = {
