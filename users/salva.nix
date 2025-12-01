@@ -46,7 +46,7 @@ in
       home.packages = with pkgs; [
         zed-editor
         nil
-        bitwarden-cli
+        bitwarden-desktop
       ];
 
       home.sessionVariables = {
