@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { pkgs, ... }:
 
 {
@@ -61,19 +57,25 @@
     distrobox
   ];
 
-  networking.firewall.allowedTCPPorts = [
-    53317 # Localsend
-    27036
-    27037 # Steam Remote Play
-    27040 # Steam Local Network Transfer
-  ];
-  networking.firewall.allowedUDPPorts = [
-    53317 # Localsend
-    27031
-    27036 # Steam Remote Play
-    4380 # Steam Discovery
-  ];
-  networking.firewall.enable = true;
+  networking.firewall = {
+    enable = true;
+
+    backend = "firewalld";
+
+    allowedTCPPorts = [
+      53317 # Localsend
+      27036 # Steam Remote Play
+      27037
+      27040 # Steam Local Network Transfer
+    ];
+
+    allowedUDPPorts = [
+      53317 # Localsend
+      27031 # Steam Remote Play
+      27036
+      4380 # Steam Discovery
+    ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
