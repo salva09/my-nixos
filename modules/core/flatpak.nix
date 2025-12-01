@@ -20,7 +20,6 @@ in
     uninstallUnmanaged = true;
     packages = [
       "app.zen_browser.zen"
-      "com.bitwarden.desktop"
       "com.dec05eba.gpu_screen_recorder"
       "com.discordapp.Discord"
       "com.ranfdev.DistroShelf"
