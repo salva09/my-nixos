@@ -47,6 +47,7 @@ in
       "no.mifi.losslesscut"
       "org.gnome.Boxes"
       "de.haeckerfelix.Fragments"
+      "com.bitwarden.desktop"
     ];
     overrides = {
       global = {

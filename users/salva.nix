@@ -46,11 +46,10 @@ in
       home.packages = with pkgs; [
         zed-editor
         nil
-        bitwarden-desktop
       ];
 
       home.sessionVariables = {
-        SSH_AUTH_SOCK = "$HOME/.bitwarden-ssh-agent.sock";
+        SSH_AUTH_SOCK = "$HOME/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock";
       };
 
       programs.fish = {
