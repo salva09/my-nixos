@@ -10,6 +10,8 @@
     ../../modules/core/system.nix
     ../../modules/core/flatpak.nix
 
+    ../../modules/gaming.nix
+
     # 3. Desktop Environment
     ../../modules/desktop/gnome.nix
 

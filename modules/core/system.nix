@@ -26,12 +26,6 @@
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
 
-  programs.gamemode.enable = true;
-
-  services.udev.packages = with pkgs; [
-    game-devices-udev-rules
-  ];
-
   hardware.uinput.enable = true;
 
   services.printing.enable = false;
@@ -64,16 +58,10 @@
 
     allowedTCPPorts = [
       53317 # Localsend
-      27036 # Steam Remote Play
-      27037
-      27040 # Steam Local Network Transfer
     ];
 
     allowedUDPPorts = [
       53317 # Localsend
-      27031 # Steam Remote Play
-      27036
-      4380 # Steam Discovery
     ];
   };
 
@@ -84,5 +72,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }

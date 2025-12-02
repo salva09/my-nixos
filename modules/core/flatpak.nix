@@ -23,8 +23,6 @@ in
       "com.dec05eba.gpu_screen_recorder"
       "com.discordapp.Discord"
       "com.ranfdev.DistroShelf"
-      "com.valvesoftware.Steam"
-      "com.vysp3r.ProtonPlus"
       "io.github.Foldex.AdwSteamGtk"
       "io.github.pol_rivero.github-desktop-plus"
       "com.rtosta.zapzap"
