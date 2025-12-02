@@ -24,4 +24,5 @@
 
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "salva";
+  services.displayManager.defaultSession = "gnome";
 }
