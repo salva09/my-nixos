@@ -20,6 +20,14 @@
     gamescopeSession.enable = true;
   };
 
+  services.wivrn = {
+    enable = true;
+    highPriority = true;
+    openFirewall = true;
+    defaultRuntime = true;
+    steam.importOXRRuntimes = true;
+  };
+
   programs.gamemode = {
     enable = true;
     enableRenice = true;
@@ -33,18 +41,6 @@
         renice = 10;
         inhibit_screensaver = 1;
       };
-
-      # Optimizations for your AMD GPU
-      gpu = {
-        apply_gpu_optimisations = "accept-responsibility";
-        gpu_device = 0;
-        amd_performance_level = "high";
-      };
-
-      custom = {
-        start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
-        end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
-      };
     };
   };
 
@@ -54,6 +50,9 @@
   };
 
   environment.systemPackages = with pkgs; [
+    discord
+    prismlauncher
+    heroic
     protonplus
     r2modman
   ];

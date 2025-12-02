@@ -50,6 +50,7 @@ in
 
       home.sessionVariables = {
         SSH_AUTH_SOCK = "$HOME/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock";
+        ELECTRON_OZONE_PLATFORM_HINT = "auto";
       };
 
       programs.fish = {
@@ -92,9 +93,9 @@ in
       home.file = lib.mkMerge [
         (lib.mkIf isDesktop (builtins.listToAttrs (map linkFlatpak flatpakApps)))
 
-        # Block B: Logic for LAPTOP (Optional)
-        # If you wanted specific laptop files, you could add:
-        # (lib.mkIf (!isDesktop) { ... })
+        (lib.mkIf isDesktop {
+          ".local/share/PrismLauncher".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Games/PrismLauncher";
+        })
       ];
 
       # The state version is required and should stay at the version you
