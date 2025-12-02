@@ -38,7 +38,7 @@
   fileSystems."/mnt/data" = {
     device = "/dev/disk/by-uuid/8c47ea35-550b-47af-8b51-11007fa79e8a";
     fsType = "ext4";
-    options = [ "defaults" "nofail" "noatime" "x-gvfs-show" ];
+    options = [ "defaults" "nofail" "noatime" ];
   };
 
   fileSystems."/home/salva/Downloads" = { device = "/mnt/data/Downloads"; options = [ "bind" "nofail" "x-gvfs-hide" ]; };

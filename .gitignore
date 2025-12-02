@@ -4,3 +4,5 @@ result-*
 
 # Ignore VM disk images
 *.qcow2
+
+.zed
