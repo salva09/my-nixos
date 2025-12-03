@@ -42,6 +42,7 @@ in
       "org.gnome.Boxes"
       "de.haeckerfelix.Fragments"
       "com.bitwarden.desktop"
+      "info.febvre.Komikku"
 
       # GTK Theme
       "org.gtk.Gtk3theme.adw-gtk3"
