@@ -33,9 +33,9 @@
       settings = {
         "org/gnome/mutter" = {
           experimental-features = [
-            "scale-monitor-framebuffer" # Enables fractional scaling (125% 150% 175%)
-            "variable-refresh-rate" # Enables Variable Refresh Rate (VRR) on compatible displays
-            #"xwayland-native-scaling" # Enable on gnome 50 for some essential fixes
+            # "scale-monitor-framebuffer"
+            # "variable-refresh-rate"
+            # "xwayland-native-scaling"
           ];
           check-alive-timeout = lib.gvariant.mkUint32 10000;
         };
