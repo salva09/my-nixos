@@ -55,5 +55,6 @@
     heroic
     protonplus
     r2modman
+    mangohud
   ];
 }
