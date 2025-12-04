@@ -43,6 +43,8 @@ in
       "de.haeckerfelix.Fragments"
       "com.bitwarden.desktop"
       "info.febvre.Komikku"
+      "net.lutris.Lutris"
+      "io.github.radiolamp.mangojuice"
 
       # GTK Theme
       "org.gtk.Gtk3theme.adw-gtk3"
