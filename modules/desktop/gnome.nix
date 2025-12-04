@@ -27,6 +27,11 @@
     gnomeExtensions.advanced-alttab-window-switcher
   ];
 
+  environment.etc."xdg/monitors.xml" = {
+    source = "/home/salva/.config/monitors.xml";
+    mode = "0644"; # Set mode so the file is copied and accessible to GDM.
+  };
+
   programs.dconf.profiles.user.databases = [
     {
       lockAll = true; # prevents overriding
