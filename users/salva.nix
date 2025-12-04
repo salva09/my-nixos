@@ -26,22 +26,7 @@ in
 
   home-manager.users.salva =
     { pkgs, config, ... }:
-    let
-      flatpakApps = [
-        "app.zen_browser.zen"
-        "com.discordapp.Discord"
-        "com.rtosta.zapzap"
-        "org.mozilla.Thunderbird"
-        "org.prismlauncher.PrismLauncher"
-      ];
 
-      linkFlatpak = app: {
-        name = ".var/app/${app}";
-        value = {
-          source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/.var/app/${app}";
-        };
-      };
-    in
     {
       home.packages = with pkgs; [
         zed-editor
@@ -87,15 +72,26 @@ in
 
       xdg.userDirs = {
         enable = true;
-        createDirectories = true;
+        createDirectories = false;
       };
 
       home.file = lib.mkMerge [
-        (lib.mkIf isDesktop (builtins.listToAttrs (map linkFlatpak flatpakApps)))
+        (lib.mkIf isDesktop
+          {
+            "Downloads".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Downloads";
+            "Documents".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Documents";
+            "Music".source     = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Music";
+            "Pictures".source  = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Pictures";
+            "Videos".source    = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Videos";
+            "Games".source     = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Games";
 
-        (lib.mkIf isDesktop {
-          ".local/share/PrismLauncher".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Games/PrismLauncher";
-        })
+            ".var/app/app.zen_browser.zen".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/.var/app/app.zen_browser.zen";
+            ".var/app/com.rtosta.zapzap".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/.var/app/com.rtosta.zapzap";
+            ".var/app/org.mozilla.Thunderbird".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/.var/app/org.mozilla.Thunderbird";
+
+            ".local/share/PrismLauncher".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Games/PrismLauncher";
+          }
+        )
       ];
 
       # The state version is required and should stay at the version you

@@ -41,13 +41,6 @@
     options = [ "defaults" "nofail" "noatime" ];
   };
 
-  fileSystems."/home/salva/Downloads" = { device = "/mnt/data/Downloads"; options = [ "bind" "nofail" "x-gvfs-hide" ]; };
-  fileSystems."/home/salva/Documents" = { device = "/mnt/data/Documents"; options = [ "bind" "nofail" "x-gvfs-hide" ]; };
-  fileSystems."/home/salva/Music"     = { device = "/mnt/data/Music";     options = [ "bind" "nofail" "x-gvfs-hide" ]; };
-  fileSystems."/home/salva/Pictures"  = { device = "/mnt/data/Pictures";  options = [ "bind" "nofail" "x-gvfs-hide" ]; };
-  fileSystems."/home/salva/Videos"    = { device = "/mnt/data/Videos";    options = [ "bind" "nofail" "x-gvfs-hide" ]; };
-  fileSystems."/home/salva/Games"     = { device = "/mnt/data/Games";     options = [ "bind" "nofail" "x-gvfs-hide" ]; };
-
   zramSwap.enable = true;
 
   networking.useDHCP = lib.mkDefault true;
