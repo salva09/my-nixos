@@ -56,5 +56,6 @@
     protonplus
     r2modman
     mangohud
+    mangojuice
   ];
 }
