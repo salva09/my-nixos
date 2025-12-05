@@ -43,6 +43,7 @@ in
       "de.haeckerfelix.Fragments"
       "com.bitwarden.desktop"
       "info.febvre.Komikku"
+      "org.prismlauncher.PrismLauncher"
 
       # GTK Theme
       "org.gtk.Gtk3theme.adw-gtk3"

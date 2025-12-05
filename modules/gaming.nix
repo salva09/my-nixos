@@ -51,7 +51,6 @@
 
   environment.systemPackages = with pkgs; [
     discord
-    prismlauncher
     heroic
     protonplus
     r2modman

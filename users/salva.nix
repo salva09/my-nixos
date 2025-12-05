@@ -88,8 +88,7 @@ in
             ".var/app/app.zen_browser.zen".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/.var/app/app.zen_browser.zen";
             ".var/app/com.rtosta.zapzap".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/.var/app/com.rtosta.zapzap";
             ".var/app/org.mozilla.Thunderbird".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/.var/app/org.mozilla.Thunderbird";
-
-            ".local/share/PrismLauncher".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Games/PrismLauncher";
+            ".var/app/org.prismlauncher.PrismLauncher".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/.var/app/org.prismlauncher.PrismLauncher";
           }
         )
       ];
