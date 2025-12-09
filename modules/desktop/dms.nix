@@ -16,7 +16,7 @@
 
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
   programs.niri.enable = true;
-  programs.niri.package = pkgs.niri-stable;
+  programs.niri.package = pkgs.niri-unstable;
 
   programs.dankMaterialShell = {
     enable = true;
@@ -191,6 +191,7 @@
 
   systemd.user.services.niri-flake-polkit.enable = false;
 
+  services.gnome.gnome-keyring.enable = true;
   services.gnome.core-apps.enable = true;
   environment.gnome.excludePackages = with pkgs; [
     gnome-tour
@@ -198,11 +199,11 @@
     gnome-music
     gnome-software
     geary
-    gnome-console
+    # gnome-console
   ];
 
   environment.systemPackages = with pkgs; [
-    ghostty
+    xwayland-satellite
   ];
 
   fonts.packages = with pkgs; [
