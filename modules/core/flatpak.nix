@@ -7,48 +7,92 @@
 
 let
   isDesktop = config.networking.hostName == "salvas-desktop";
+
+  browsers = [
+    "app.zen_browser.zen"
+  ];
+
+  communication = [
+    "com.discordapp.Discord"
+    "org.mozilla.Thunderbird"
+    "com.rtosta.zapzap" # WhatsApp
+    "org.localsend.localsend_app"
+  ];
+
+  productivity = [
+    "org.onlyoffice.desktopeditors"
+    "io.github.pol_rivero.github-desktop-plus"
+    "com.bitwarden.desktop"
+    "io.gitlab.news_flash.NewsFlash"
+  ];
+
+  creative = [
+    "org.blender.Blender"
+    "org.godotengine.Godot"
+    "org.inkscape.Inkscape"
+    "com.icons8.Lunacy"
+    "com.orama_interactive.Pixelorama"
+    "net.pixieditor.PixiEditor"
+    "no.mifi.losslesscut" # Video cutting
+  ];
+
+  media = [
+    "com.dec05eba.gpu_screen_recorder"
+    "info.febvre.Komikku" # Manga reader
+  ];
+
+  utilities = [
+    "com.ranfdev.DistroShelf"
+    "com.usebottles.bottles"
+    "org.gnome.Boxes"
+    "de.haeckerfelix.Fragments" # Torrent client
+    "org.fedoraproject.MediaWriter"
+    "ca.desrt.dconf-editor"
+  ];
+
+  gaming = [
+    # Launchers
+    "com.valvesoftware.Steam"
+    "com.heroicgameslauncher.hgl"
+    "org.prismlauncher.PrismLauncher"
+    "org.vinegarhq.Sober" # Roblox
+
+    # Utilities
+    "com.vysp3r.ProtonPlus"
+    "io.github.Foldex.AdwSteamGtk"
+    "io.github.radiolamp.mangojuice"
+    "io.github.wivrn.wivrn" # VR Streaming
+  ];
+
+  themes = [
+    "org.gtk.Gtk3theme.adw-gtk3"
+    "org.gtk.Gtk3theme.adw-gtk3-dark"
+  ];
 in
 {
   imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];
 
   services.flatpak = {
     enable = true;
+
     update.auto = {
       enable = true;
       onCalendar = "weekly"; # Default value
     };
-    uninstallUnmanaged = true;
-    packages = [
-      "app.zen_browser.zen"
-      "com.dec05eba.gpu_screen_recorder"
-      "com.ranfdev.DistroShelf"
-      "io.github.Foldex.AdwSteamGtk"
-      "io.github.pol_rivero.github-desktop-plus"
-      "com.rtosta.zapzap"
-      "org.blender.Blender"
-      "org.godotengine.Godot"
-      "org.inkscape.Inkscape"
-      "org.localsend.localsend_app"
-      "org.mozilla.Thunderbird"
-      "org.onlyoffice.desktopeditors"
-      "org.vinegarhq.Sober"
-      "ca.desrt.dconf-editor"
-      "com.icons8.Lunacy"
-      "com.orama_interactive.Pixelorama"
-      "com.usebottles.bottles"
-      "io.gitlab.news_flash.NewsFlash"
-      "net.pixieditor.PixiEditor"
-      "no.mifi.losslesscut"
-      "org.gnome.Boxes"
-      "de.haeckerfelix.Fragments"
-      "com.bitwarden.desktop"
-      "info.febvre.Komikku"
-      "org.prismlauncher.PrismLauncher"
 
-      # GTK Theme
-      "org.gtk.Gtk3theme.adw-gtk3"
-      "org.gtk.Gtk3theme.adw-gtk3-dark"
+    uninstallUnmanaged = true;
+
+    packages = lib.concatLists [
+      browsers
+      communication
+      productivity
+      creative
+      media
+      utilities
+      gaming
+      themes
     ];
+
     overrides = {
       global = {
         Context.filesystems = lib.mkIf isDesktop [ "/mnt/data" ];
@@ -56,6 +100,10 @@ in
         Environment = {
           "ELECTRON_OZONE_PLATFORM_HINT" = "auto";
         };
+      };
+
+      "com.valvesoftware.Steam" = {
+        Context.filesystems = [ "xdg-config/r2modmanPlus-local" ];
       };
     };
   };
