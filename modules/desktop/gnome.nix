@@ -19,6 +19,15 @@
     geary
   ];
 
+  programs.kdeconnect = {
+    enable = true;
+    package = pkgs.gnomeExtensions.gsconnect;
+  };
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.adwaita-mono
+  ];
+
   environment.systemPackages = with pkgs; [
     gnomeExtensions.vertical-workspaces
     gnomeExtensions.caffeine
@@ -37,15 +46,21 @@
       lockAll = true; # prevents overriding
       settings = {
         "org/gnome/mutter" = {
-          # experimental-features = [
-          #   "scale-monitor-framebuffer"
-          #   "variable-refresh-rate"
-          #   "xwayland-native-scaling"
-          # ];
+          experimental-features = [
+            "scale-monitor-framebuffer"
+            "variable-refresh-rate"
+            "xwayland-native-scaling"
+          ];
           check-alive-timeout = lib.gvariant.mkUint32 10000;
         };
         "org/gnome/gnome-session" = {
           logout-prompt = false;
+        };
+        "org/gnome/desktop/interface" = {
+          monospace-font-name = "Adwaita Mono 10";
+        };
+        "org/gnome/desktop/wm/preferences" = {
+          button-layout = ":close";
         };
       };
     }
@@ -58,6 +73,22 @@
         gtk = {
           enable = true;
 
+          cursorTheme = {
+            name = "Adwaita";
+            package = pkgs.adwaita-icon-theme;
+          };
+
+          font = {
+            name = "Adwaita Sans";
+            size = 10;
+            package = pkgs.adwaita-fonts;
+          };
+
+          iconTheme = {
+            name = "Adwaita";
+            package = pkgs.adwaita-icon-theme;
+          };
+
           gtk3 = {
             enable = true;
 
@@ -69,14 +100,5 @@
         };
       }
     )
-  ];
-
-  programs.kdeconnect = {
-    enable = true;
-    package = pkgs.gnomeExtensions.gsconnect;
-  };
-
-  fonts.packages = with pkgs; [
-    nerd-fonts.adwaita-mono
   ];
 }
