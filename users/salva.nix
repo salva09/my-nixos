@@ -24,6 +24,17 @@ in
     ];
   };
 
+  fileSystems = lib.mkIf isDesktop {
+    "/home/salva/.var" = {
+      device = "/mnt/data/.var";
+      options = [
+        "bind"
+        "nofail"
+        "x-gvfs-hide"
+      ];
+    };
+  };
+
   home-manager.users.salva =
     { pkgs, config, ... }:
 
@@ -31,6 +42,7 @@ in
       home.packages = with pkgs; [
         zed-editor
         nixd
+        nil
       ];
 
       home.sessionVariables = {
@@ -76,21 +88,14 @@ in
       };
 
       home.file = lib.mkMerge [
-        (lib.mkIf isDesktop
-          {
-            "Downloads".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Downloads";
-            "Documents".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Documents";
-            "Music".source     = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Music";
-            "Pictures".source  = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Pictures";
-            "Videos".source    = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Videos";
-            "Games".source     = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Games";
-
-            ".var/app/app.zen_browser.zen".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/.var/app/app.zen_browser.zen";
-            ".var/app/com.rtosta.zapzap".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/.var/app/com.rtosta.zapzap";
-            ".var/app/org.mozilla.Thunderbird".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/.var/app/org.mozilla.Thunderbird";
-            ".var/app/org.prismlauncher.PrismLauncher".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/.var/app/org.prismlauncher.PrismLauncher";
-          }
-        )
+        (lib.mkIf isDesktop {
+          "Downloads".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Downloads";
+          "Documents".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Documents";
+          "Music".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Music";
+          "Pictures".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Pictures";
+          "Videos".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Videos";
+          "Games".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Games";
+        })
       ];
 
       # The state version is required and should stay at the version you
