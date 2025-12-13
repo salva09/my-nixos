@@ -22,7 +22,11 @@
 
   networking.hostName = "salvas-desktop";
 
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "salva";
-  services.displayManager.defaultSession = "gnome";
+  services.displayManager = {
+    autoLogin = {
+      enable = true;
+      user = "salva";
+    };
+    defaultSession = "gnome";
+  };
 }
