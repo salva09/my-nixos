@@ -59,7 +59,8 @@ in
 
         shellAliases = {
           conf = "cd $HOME/Documents/my-nixos"; # Quick jump to config
-          update-conf = "run0 nixos-rebuild switch --flake $HOME/Documents/my-nixos";
+          switch-conf = "run0 nixos-rebuild switch --flake $HOME/Documents/my-nixos";
+          boot-conf = "run0 nixos-rebuild boot --flake $HOME/Documents/my-nixos";
         };
 
         plugins = [
