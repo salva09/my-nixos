@@ -41,8 +41,9 @@
     capSysNice = true; # Allow it to prioritize itself
   };
 
+  services.lact.enable = false;
+
   environment.systemPackages = with pkgs; [
     r2modman
-    mangohud
   ];
 }
