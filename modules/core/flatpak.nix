@@ -62,6 +62,7 @@ let
     "io.github.Foldex.AdwSteamGtk"
     "io.github.radiolamp.mangojuice"
     "io.github.wivrn.wivrn" # VR Streaming
+    "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08"
   ];
 
   themes = [
@@ -77,7 +78,7 @@ in
 
     update.auto = {
       enable = true;
-      onCalendar = "weekly"; # Default value
+      onCalendar = "daily"; # Default value
     };
 
     uninstallUnmanaged = true;
@@ -95,7 +96,7 @@ in
 
     overrides = {
       global = {
-        Context.filesystems = lib.mkIf isDesktop [ "/mnt/data" ];
+        Context.filesystems = [ "xdg-config/MangoHud" ] ++ lib.optionals isDesktop [ "/mnt/data" ];
 
         Environment = {
           "ELECTRON_OZONE_PLATFORM_HINT" = "auto";
