@@ -14,6 +14,7 @@ in
   users.users.salva = {
     isNormalUser = true;
     description = "Salva";
+    hashedPassword = "$y$j9T$6OkXEdC.0DHcfOHn7gouE1$8xxgexZ8DsZaQyT6knFQhPZXWH654ltVEIq.dKIo8W7";
 
     shell = pkgs.fish;
 
