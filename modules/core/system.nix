@@ -17,7 +17,11 @@
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
+  system.nixos-init.enable = true;
+  system.etc.overlay.enable = true;
+  services.userborn.enable = true;
+
+  nixpkgs.config.allowUnfree = false;
 
   networking.networkmanager.enable = true;
 
