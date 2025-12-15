@@ -47,6 +47,7 @@ in
       ];
 
       home.sessionVariables = {
+        NH_OS_FLAKE = "$HOME/Documents/my-nixos";
         SSH_AUTH_SOCK = "$HOME/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock";
         ELECTRON_OZONE_PLATFORM_HINT = "auto";
       };
