@@ -48,11 +48,11 @@
       lockAll = true; # prevents overriding
       settings = {
         "org/gnome/mutter" = {
-          # experimental-features = [
-          #   "scale-monitor-framebuffer"
-          #   "variable-refresh-rate"
-          #   "xwayland-native-scaling"
-          # ];
+          experimental-features = [
+            "scale-monitor-framebuffer"
+            "variable-refresh-rate"
+            # "xwayland-native-scaling"
+          ];
           check-alive-timeout = lib.gvariant.mkUint32 10000;
         };
         "org/gnome/gnome-session" = {
