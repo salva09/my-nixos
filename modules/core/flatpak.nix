@@ -15,7 +15,7 @@ let
   communication = [
     "com.discordapp.Discord"
     "org.mozilla.Thunderbird"
-    "com.rtosta.zapzap" # WhatsApp
+    "io.github.tobagin.karere" # WhatsApp
     "org.localsend.localsend_app"
   ];
 
@@ -48,6 +48,7 @@ let
     "de.haeckerfelix.Fragments" # Torrent client
     "org.fedoraproject.MediaWriter"
     "ca.desrt.dconf-editor"
+    "io.github.fabrialberio.pinapp"
   ];
 
   gaming = [
