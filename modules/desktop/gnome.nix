@@ -29,6 +29,7 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    file-roller
     gnomeExtensions.vertical-workspaces
     gnomeExtensions.caffeine
     gnomeExtensions.appindicator
