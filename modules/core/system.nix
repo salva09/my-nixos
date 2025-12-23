@@ -17,18 +17,26 @@
   system.etc.overlay.enable = true;
   services.userborn.enable = true;
 
-  nixpkgs.config.allowUnfree = false;
+  nixpkgs.config.allowUnfree = true;
 
   networking.networkmanager.enable = true;
 
   time.timeZone = "America/Monterrey";
-
   i18n.defaultLocale = "en_US.UTF-8";
 
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
 
+  services.libinput.enable = true;
+
   hardware.uinput.enable = true;
+  services.udev.extraRules = ''
+    # Keychron M6 Mouse (USB)
+    KERNEL=="hidraw*", ATTRS{idVendor}=="3434", MODE="0666", GROUP="users"
+
+    # Keychron M6 Mouse (2.4GHz Dongle)
+    KERNEL=="hidraw*", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="0360", MODE="0666", GROUP="users"
+  '';
 
   services.printing.enable = false;
 
