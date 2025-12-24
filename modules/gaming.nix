@@ -13,11 +13,16 @@
   ];
 
   programs.steam = {
-    enable = false;
+    enable = true;
+
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
     gamescopeSession.enable = false;
+
+    package = pkgs.steam.override {
+      extraArgs = "-steamos3";
+    };
   };
 
   programs.gamemode = {
@@ -37,7 +42,7 @@
   };
 
   programs.gamescope = {
-    enable = false;
+    enable = true;
     capSysNice = true; # Allow it to prioritize itself
   };
 
@@ -45,5 +50,7 @@
 
   environment.systemPackages = with pkgs; [
     r2modman
+    mangohud
+    discord
   ];
 }

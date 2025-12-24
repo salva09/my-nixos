@@ -53,7 +53,7 @@ let
 
   gaming = [
     # Launchers
-    "com.valvesoftware.Steam"
+    # "com.valvesoftware.Steam"
     "com.heroicgameslauncher.hgl"
     "org.prismlauncher.PrismLauncher"
     "org.vinegarhq.Sober" # Roblox
@@ -97,16 +97,20 @@ in
 
     overrides = {
       global = {
-        Context.filesystems = [ "xdg-config/MangoHud" ] ++ lib.optionals isDesktop [ "/mnt/data" ];
+        Context.filesystems = [
+          "/nix/store:ro"
+          "xdg-config/MangoHud"
+        ]
+        ++ lib.optionals isDesktop [ "/mnt/data" ];
 
         Environment = {
           "ELECTRON_OZONE_PLATFORM_HINT" = "auto";
         };
       };
 
-      "com.valvesoftware.Steam" = {
-        Context.filesystems = [ "xdg-config/r2modmanPlus-local" ];
-      };
+      # "com.valvesoftware.Steam" = {
+      #   Context.filesystems = [ "xdg-config/r2modmanPlus-local" ];
+      # };
     };
   };
 }
