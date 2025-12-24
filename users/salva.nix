@@ -6,23 +6,65 @@
 }:
 
 let
+  username = "salva";
   isDesktop = config.networking.hostName == "salvas-desktop";
+
+  # Directories to link from /mnt/data to /home/salva
+  userDirs = [
+    "Documents"
+    "Music"
+    "Pictures"
+    "Videos"
+    "Games"
+    "Downloads"
+  ];
 in
 {
   programs.fish.enable = true;
 
-  users.users.salva = {
+  users.users.${username} = {
     isNormalUser = true;
     description = "Salva";
     hashedPassword = "$y$j9T$6OkXEdC.0DHcfOHn7gouE1$8xxgexZ8DsZaQyT6knFQhPZXWH654ltVEIq.dKIo8W7";
-
     shell = pkgs.fish;
-
     extraGroups = [
       "networkmanager"
       "wheel"
       "gamemode"
     ];
+  };
+
+  # 1. Ensure the mount point exists and has the right permissions
+  # (Put this in your main configuration.nix or here if this file is always active)
+  systemd.tmpfiles.rules = lib.mkIf isDesktop [
+    "d /mnt/data 0755 ${username} users -"
+  ];
+
+  # 2. Replace Bind Mounts with Symlinks
+  system.userActivationScripts.linkSecondaryDrive = lib.mkIf isDesktop {
+    text = ''
+      # Ensure the source directories exist on the HDD
+      for dir in ${builtins.concatStringsSep " " userDirs}; do
+        mkdir -p /mnt/data/$dir
+      done
+
+      # Create the symlinks in the home directory
+      for dir in ${builtins.concatStringsSep " " userDirs}; do
+        target="/home/${username}/$dir"
+        source="/mnt/data/$dir"
+
+        # Remove existing empty directories or old links to prevent conflicts
+        if [ -d "$target" ] && [ ! -L "$target" ]; then
+          rmdir "$target" 2>/dev/null || echo "Warning: $target is not empty, skipping link."
+        fi
+
+        # Create link if it doesn't exist
+        if [ ! -e "$target" ]; then
+          ln -s "$source" "$target"
+          chown -h ${username}:users "$target"
+        fi
+      done
+    '';
   };
 
   fileSystems = lib.mkIf isDesktop {
@@ -36,10 +78,12 @@ in
     };
   };
 
-  home-manager.users.salva =
-    { pkgs, config, ... }:
-
+  home-manager.users.${username} =
+    { pkgs, ... }:
     {
+      home.stateVersion = "25.11";
+      home.preferXdgDirectories = true;
+
       home.packages = with pkgs; [
         zed-editor
         nixd
@@ -52,19 +96,17 @@ in
         ELECTRON_OZONE_PLATFORM_HINT = "auto";
       };
 
+      xdg = {
+        enable = true;
+        userDirs = {
+          enable = true;
+          createDirectories = true;
+        };
+      };
+
       programs.fish = {
         enable = true;
-
-        interactiveShellInit = ''
-          set fish_greeting # Disable greeting
-        '';
-
-        shellAliases = {
-          conf = "cd $HOME/Documents/my-nixos"; # Quick jump to config
-          switch-conf = "run0 nixos-rebuild switch --flake $HOME/Documents/my-nixos";
-          boot-conf = "run0 nixos-rebuild boot --flake $HOME/Documents/my-nixos";
-        };
-
+        interactiveShellInit = "set fish_greeting";
         plugins = [
           {
             name = "tide";
@@ -75,34 +117,12 @@ in
 
       programs.git = {
         enable = true;
-
-        settings = {
-          user.name = "Salva HG";
-          user.email = "salva.hg01@gmail.com";
-
+        userName = "Salva HG";
+        userEmail = "salva.hg01@gmail.com";
+        extraConfig = {
           init.defaultBranch = "main";
           pull.rebase = false;
         };
       };
-
-      xdg.userDirs = {
-        enable = true;
-        createDirectories = false;
-      };
-
-      home.file = lib.mkMerge [
-        (lib.mkIf isDesktop {
-          "Downloads".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Downloads";
-          "Documents".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Documents";
-          "Music".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Music";
-          "Pictures".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Pictures";
-          "Videos".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Videos";
-          "Games".source = config.lib.file.mkOutOfStoreSymlink "/mnt/data/Games";
-        })
-      ];
-
-      # The state version is required and should stay at the version you
-      # originally installed.
-      home.stateVersion = "25.11";
     };
 }
