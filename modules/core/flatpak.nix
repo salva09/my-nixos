@@ -108,6 +108,17 @@ in
         };
       };
 
+      "org.vinegarhq.Sober".Context = {
+        filesystems = [
+          "xdg-run/app/com.discordapp.Discord:create"
+          "xdg-run/discord-ipc-0"
+        ];
+
+        devices = [
+          "input"
+        ];
+      };
+
       # "com.valvesoftware.Steam" = {
       #   Context.filesystems = [ "xdg-config/r2modmanPlus-local" ];
       # };
