@@ -13,7 +13,7 @@ let
   ];
 
   communication = [
-    "com.discordapp.Discord"
+    # "com.discordapp.Discord"
     "org.mozilla.Thunderbird"
     "io.github.tobagin.karere" # WhatsApp
     "org.localsend.localsend_app"
