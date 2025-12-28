@@ -32,6 +32,7 @@ in
       "wheel"
       "gamemode"
     ];
+    autoSubUidGidRange = true;
   };
 
   # 1. Ensure the mount point exists and has the right permissions
@@ -117,9 +118,10 @@ in
 
       programs.git = {
         enable = true;
-        userName = "Salva HG";
-        userEmail = "salva.hg01@gmail.com";
-        extraConfig = {
+
+        settings = {
+          user.name = "Salva HG";
+          user.email = "salva.hg01@gmail.com";
           init.defaultBranch = "main";
           pull.rebase = false;
         };
