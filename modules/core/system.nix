@@ -14,9 +14,10 @@
     };
   };
 
-  system.nixos-init.enable = true;
-  system.etc.overlay.enable = true;
-  services.userborn.enable = true;
+  # Experimental interpreterless system initialization
+  system.nixos-init.enable = false;
+  system.etc.overlay.enable = false;
+  services.userborn.enable = false;
 
   nixpkgs.config.allowUnfree = true;
 
