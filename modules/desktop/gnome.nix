@@ -30,12 +30,15 @@
 
   environment.systemPackages = with pkgs; [
     file-roller
+
+    # Gnome extensions
     gnomeExtensions.vertical-workspaces
     gnomeExtensions.caffeine
     gnomeExtensions.appindicator
-    gnomeExtensions.paperwm
+    # gnomeExtensions.paperwm
     # gnomeExtensions.grand-theft-focus
-    # gnomeExtensions.advanced-alttab-window-switcher
+    gnomeExtensions.advanced-alttab-window-switcher
+    gnomeExtensions.dash-to-dock
   ];
 
   # environment.etc."xdg/monitors.xml" = {
@@ -76,13 +79,13 @@
           enable = true;
 
           cursorTheme = {
-            name = "Adwaita";
-            package = pkgs.adwaita-icon-theme;
+            name = "elementary";
+            package = pkgs.pantheon.elementary-icon-theme;
           };
 
           font = {
             name = "Adwaita Sans";
-            size = 11;
+            size = 10;
             package = pkgs.adwaita-fonts;
           };
 
@@ -99,6 +102,12 @@
               package = pkgs.adw-gtk3;
             };
           };
+        };
+
+        home.pointerCursor = {
+          enable = true;
+          name = "elementary";
+          package = pkgs.pantheon.elementary-icon-theme;
         };
       }
     )
