@@ -51,6 +51,5 @@
   environment.systemPackages = with pkgs; [
     r2modman
     mangohud
-    discord
   ];
 }
