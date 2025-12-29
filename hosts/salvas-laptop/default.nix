@@ -8,7 +8,7 @@
     ../../modules/core/system.nix
     ../../modules/core/flatpak.nix
 
-    ../../modules/desktop/noctalia.nix
+    ../../modules/desktop/gnome.nix
 
     ../../users/hm-defaults.nix
     ../../users/salva.nix
