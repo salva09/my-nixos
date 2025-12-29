@@ -17,6 +17,7 @@
     gnome-music
     gnome-software
     geary
+    gnome-system-monitor
   ];
 
   programs.kdeconnect = {
@@ -30,6 +31,7 @@
 
   environment.systemPackages = with pkgs; [
     file-roller
+    mission-center
 
     # Gnome extensions
     gnomeExtensions.vertical-workspaces
@@ -41,53 +43,45 @@
     gnomeExtensions.dash-to-dock
   ];
 
-  # environment.etc."xdg/monitors.xml" = {
-  #   source = "/home/salva/.config/monitors.xml";
-  #   mode = "0644"; # Set mode so the file is copied and accessible to GDM.
-  # };
-
-  programs.dconf.profiles.user.databases = [
-    {
-      lockAll = true; # prevents overriding
-      settings = {
-        "org/gnome/mutter" = {
-          experimental-features = [
-            "scale-monitor-framebuffer"
-            "variable-refresh-rate"
-            # "xwayland-native-scaling"
-          ];
-          check-alive-timeout = lib.gvariant.mkUint32 10000;
-        };
-        "org/gnome/gnome-session" = {
-          logout-prompt = false;
-        };
-        "org/gnome/desktop/interface" = {
-          monospace-font-name = "Adwaita Mono 10";
-        };
-        "org/gnome/desktop/wm/preferences" = {
-          button-layout = ":close";
-        };
-      };
-    }
-  ];
+  environment.etc."xdg/monitors.xml" = {
+    source = "/home/salva/.config/monitors.xml";
+    mode = "0644"; # Set mode so the file is copied and accessible to GDM.
+  };
 
   home-manager.sharedModules = [
     (
       { pkgs, ... }:
       {
-        gtk = {
+        dconf = {
           enable = true;
 
-          cursorTheme = {
-            name = "Adwaita";
-            package = pkgs.pantheon.elementary-icon-theme;
+          settings = {
+            "org/gnome/mutter" = {
+              experimental-features = [
+                "scale-monitor-framebuffer"
+                "variable-refresh-rate"
+                # "xwayland-native-scaling"
+              ];
+              check-alive-timeout = lib.gvariant.mkUint32 10000;
+            };
+            "org/gnome/gnome-session" = {
+              logout-prompt = false;
+            };
+            "org/gnome/desktop/interface" = {
+              font-antialiasing = "grayscale";
+              font-hinting = "none";
+              font-name = "Adwaita Sans 10";
+              document-font-name = "Adwaita Sans 10";
+              monospace-font-name = "Adwaita Mono 10";
+            };
+            "org/gnome/desktop/wm/preferences" = {
+              button-layout = ":close";
+            };
           };
+        };
 
-          font = {
-            name = "Adwaita Sans";
-            size = 10;
-            package = pkgs.adwaita-fonts;
-          };
+        gtk = {
+          enable = true;
 
           iconTheme = {
             name = "Adwaita";
@@ -108,7 +102,7 @@
           enable = true;
           name = "Adwaita";
           size = 24;
-          package = pkgs.pantheon.elementary-icon-theme;
+          package = pkgs.adwaita-icon-theme;
         };
       }
     )
