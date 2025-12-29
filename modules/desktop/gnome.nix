@@ -79,7 +79,7 @@
           enable = true;
 
           cursorTheme = {
-            name = "elementary";
+            name = "Adwaita";
             package = pkgs.pantheon.elementary-icon-theme;
           };
 
@@ -106,7 +106,8 @@
 
         home.pointerCursor = {
           enable = true;
-          name = "elementary";
+          name = "Adwaita";
+          size = 24;
           package = pkgs.pantheon.elementary-icon-theme;
         };
       }
