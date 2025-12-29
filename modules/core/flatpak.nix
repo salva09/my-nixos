@@ -49,6 +49,7 @@ let
     "org.fedoraproject.MediaWriter"
     "ca.desrt.dconf-editor"
     "io.github.fabrialberio.pinapp"
+    "io.github.alainm23.planify"
   ];
 
   gaming = [
