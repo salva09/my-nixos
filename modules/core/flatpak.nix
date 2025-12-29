@@ -120,9 +120,11 @@ in
         ];
       };
 
-      # "com.valvesoftware.Steam" = {
-      #   Context.filesystems = [ "xdg-config/r2modmanPlus-local" ];
-      # };
+      "org.localsend.localsend_app".Context = {
+        filesystems = [
+          "home"
+        ];
+      };
     };
   };
 }
