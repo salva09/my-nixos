@@ -8,9 +8,7 @@
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
-  services.gnome.core-apps.enable = true;
   services.gnome.core-developer-tools.enable = false;
-  services.gnome.games.enable = false;
   environment.gnome.excludePackages = with pkgs; [
     gnome-tour
     gnome-user-docs
@@ -37,16 +35,9 @@
     gnomeExtensions.vertical-workspaces
     gnomeExtensions.caffeine
     gnomeExtensions.appindicator
-    # gnomeExtensions.paperwm
-    # gnomeExtensions.grand-theft-focus
     gnomeExtensions.advanced-alttab-window-switcher
     gnomeExtensions.dash-to-dock
   ];
-
-  environment.etc."xdg/monitors.xml" = {
-    source = "/home/salva/.config/monitors.xml";
-    mode = "0644"; # Set mode so the file is copied and accessible to GDM.
-  };
 
   home-manager.sharedModules = [
     (
@@ -70,9 +61,8 @@
             "org/gnome/desktop/interface" = {
               font-antialiasing = "grayscale";
               font-hinting = "none";
-              font-name = "Adwaita Sans 10";
-              document-font-name = "Adwaita Sans 10";
-              monospace-font-name = "Adwaita Mono 10";
+              document-font-name = "Adwaita Sans 11";
+              monospace-font-name = "Adwaita Mono 11";
             };
             "org/gnome/desktop/wm/preferences" = {
               button-layout = ":close";
@@ -82,6 +72,12 @@
 
         gtk = {
           enable = true;
+
+          font = {
+            name = "Adwaita Sans";
+            size = 11;
+            package = pkgs.adwaita-fonts;
+          };
 
           iconTheme = {
             name = "Adwaita";
@@ -96,6 +92,11 @@
               package = pkgs.adw-gtk3;
             };
           };
+        };
+
+        qt = {
+          enable = true;
+          platformTheme.name = "gtk3";
         };
 
         home.pointerCursor = {
