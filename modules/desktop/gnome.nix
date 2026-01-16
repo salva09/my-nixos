@@ -30,12 +30,5 @@
   environment.systemPackages = with pkgs; [
     file-roller
     mission-center
-
-    # Gnome extensions
-    gnomeExtensions.vertical-workspaces
-    gnomeExtensions.caffeine
-    gnomeExtensions.appindicator
-    gnomeExtensions.advanced-alttab-window-switcher
-    gnomeExtensions.dash-to-dock
   ];
 }
