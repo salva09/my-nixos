@@ -3,11 +3,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-
-    home-manager = {
-      url = "github:nix-community/home-manager?ref=release-25.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
