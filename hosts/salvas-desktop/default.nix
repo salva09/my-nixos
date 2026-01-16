@@ -16,7 +16,7 @@
     ../../modules/desktop/gnome.nix
 
     # 4. User Config
-    ../../users/hm-defaults.nix
+    #../../users/hm-defaults.nix
     ../../users/salva.nix
   ];
 

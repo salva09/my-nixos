@@ -14,39 +14,15 @@
 
   # 1. The Root Subvolume (@)
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/284e44a0-103e-464b-957f-fb6495fc581d";
-    fsType = "btrfs";
+    device = "/dev/disk/by-uuid/8a8fd410-b5d3-4a42-9498-8ebec89f25ac";
+    fsType = "ext4";
     options = [
-      "subvol=@"
-      "compress=zstd"
-      "noatime"
-    ];
-  };
-
-  # 2. The Home Subvolume (@home)
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/284e44a0-103e-464b-957f-fb6495fc581d";
-    fsType = "btrfs";
-    options = [
-      "subvol=@home"
-      "compress=zstd"
-      "noatime"
-    ];
-  };
-
-  # 3. The Nix Store Subvolume (@nix)
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/284e44a0-103e-464b-957f-fb6495fc581d";
-    fsType = "btrfs";
-    options = [
-      "subvol=@nix"
-      "compress=zstd"
       "noatime"
     ];
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/C0FB-B396";
+    device = "/dev/disk/by-uuid/C4BA-0D94";
     fsType = "vfat";
     options = [
       "fmask=0077"

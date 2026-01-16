@@ -14,11 +14,13 @@
     };
   };
 
-  # Experimental interpreterless system initialization
-  system.nixos-init.enable = false;
-  system.etc.overlay.enable = false;
-  services.userborn.enable = false;
+  # Experimental features
+  system.nixos-init.enable = false; # Causes issues with distrobox
+  services.userborn.enable = false; # Causes issues with distrobox
 
+  system.etc.overlay.enable = true;
+  services.dbus.implementation = "broker";
+  
   nixpkgs.config.allowUnfree = true;
 
   networking.networkmanager.enable = true;
