@@ -2,22 +2,14 @@
 
 {
   imports = [
-    # 1. Hardware Config (Relative path)
-    ./hardware.nix
+    ./hardware.nix                  # Hardware Config
+    ../../modules/core/default.nix  # Core System Modules
+    ../../modules/desktop/gnome.nix # Desktop Environment
+    ../../users/salva.nix           # User Config
 
-    # 2. Core System Modules (Path to root)
-    ../../modules/core/boot.nix
-    ../../modules/core/system.nix
-    ../../modules/core/flatpak.nix
-
-    ../../modules/gaming.nix
-
-    # 3. Desktop Environment
-    ../../modules/desktop/gnome.nix
-
-    # 4. User Config
-    #../../users/hm-defaults.nix
-    ../../users/salva.nix
+    # Optional modules
+    ../../modules/extra/flatpak.nix
+    ../../modules/extra/gaming.nix
   ];
 
   networking.hostName = "salvas-desktop";

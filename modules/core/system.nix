@@ -20,10 +20,8 @@
 
   system.etc.overlay.enable = true;
   services.dbus.implementation = "broker";
-  
-  nixpkgs.config.allowUnfree = true;
 
-  networking.networkmanager.enable = true;
+  nixpkgs.config.allowUnfree = true;
 
   time.timeZone = "America/Monterrey";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -69,20 +67,6 @@
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 4d --keep 3";
-  };
-
-  networking.firewall = {
-    enable = true;
-
-    backend = "firewalld";
-
-    allowedTCPPorts = [
-      53317 # Localsend
-    ];
-
-    allowedUDPPorts = [
-      53317 # Localsend
-    ];
   };
 
   # This value determines the NixOS release from which the default

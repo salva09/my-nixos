@@ -63,7 +63,7 @@ let
     "com.vysp3r.ProtonPlus"
     "io.github.Foldex.AdwSteamGtk"
     "io.github.radiolamp.mangojuice"
-    "io.github.wivrn.wivrn" # VR Streaming
+    #"io.github.wivrn.wivrn" # VR Streaming
     "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08"
   ];
 
