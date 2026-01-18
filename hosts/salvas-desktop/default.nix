@@ -2,10 +2,11 @@
 
 {
   imports = [
-    ./hardware.nix                  # Hardware Config
-    ../../modules/core/default.nix  # Core System Modules
-    ../../modules/desktop/gnome.nix # Desktop Environment
-    ../../users/salva.nix           # User Config
+    ./hardware.nix # Hardware Config
+    ../../modules/core/default.nix # Core System Modules
+    ../../modules/desktop/default.nix # Core Desktop Modules
+    ../../modules/desktop/cosmic.nix # Desktop Environment
+    ../../users/salva.nix # User Config
 
     # Optional modules
     ../../modules/extra/flatpak.nix
@@ -16,9 +17,9 @@
 
   services.displayManager = {
     autoLogin = {
-      enable = true;
+      enable = false;
       user = "salva";
     };
-    defaultSession = "gnome";
+    defaultSession = "cosmic";
   };
 }
