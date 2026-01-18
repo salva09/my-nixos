@@ -19,19 +19,11 @@
   services.userborn.enable = false; # Causes issues with distrobox
 
   system.etc.overlay.enable = true;
-  services.dbus.implementation = "broker";
 
   nixpkgs.config.allowUnfree = true;
 
-  time.timeZone = "America/Monterrey";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  services.power-profiles-daemon.enable = true;
-  services.upower.enable = true;
-
-  services.libinput.enable = true;
-
-  hardware.uinput.enable = true;
   services.udev.extraRules = ''
     # Keychron M6 Mouse (USB)
     KERNEL=="hidraw*", ATTRS{idVendor}=="3434", MODE="0666", GROUP="users"
@@ -39,17 +31,6 @@
     # Keychron M6 Mouse (2.4GHz Dongle)
     KERNEL=="hidraw*", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="0360", MODE="0666", GROUP="users"
   '';
-
-  services.printing.enable = false;
-
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
 
   documentation.nixos.enable = false;
 
@@ -59,7 +40,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    git
     distrobox
   ];
 
