@@ -11,6 +11,7 @@
     # Optional modules
     ../../modules/extra/flatpak.nix
     ../../modules/extra/gaming.nix
+    ../../modules/extra/virtualisation.nix
   ];
 
   networking.hostName = "salvas-desktop";
