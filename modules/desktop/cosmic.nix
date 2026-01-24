@@ -12,11 +12,13 @@
   environment.sessionVariables.COSMIC_DATA_CONTROL_ENABLED = 1;
 
   fonts.packages = with pkgs; [
+    inter
     nerd-fonts.adwaita-mono
   ];
 
   environment.systemPackages = with pkgs; [
     file-roller
     mission-center
+    loupe
   ];
 }
