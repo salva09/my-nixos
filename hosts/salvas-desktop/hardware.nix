@@ -14,7 +14,7 @@
 
   # 1. The Root Subvolume (@)
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/8a8fd410-b5d3-4a42-9498-8ebec89f25ac";
+    device = "/dev/disk/by-uuid/7efc6d6e-5e01-46f9-873d-f96322b1e429";
     fsType = "ext4";
     options = [
       "noatime"
@@ -22,7 +22,7 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/C4BA-0D94";
+    device = "/dev/disk/by-uuid/B8B6-AD50";
     fsType = "vfat";
     options = [
       "fmask=0077"
