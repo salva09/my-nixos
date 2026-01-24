@@ -101,6 +101,7 @@ in
         Context.filesystems = [
           "/nix/store:ro"
           "xdg-config/MangoHud"
+          "xdg-config/gtk-4.0:ro"
         ]
         ++ lib.optionals isDesktop [ "/mnt/data" ];
 
