@@ -15,7 +15,7 @@ let
   communication = [
     "com.discordapp.Discord"
     "org.mozilla.Thunderbird"
-    "com.rtosta.zapzap" # WhatsApp
+    "io.github.tobagin.karere" # WhatsApp
     "org.localsend.localsend_app"
   ];
 
