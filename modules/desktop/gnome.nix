@@ -16,6 +16,7 @@
     gnome-software
     geary
     gnome-system-monitor
+    gnome-console
   ];
 
   programs.kdeconnect = {
@@ -23,12 +24,9 @@
     package = pkgs.gnomeExtensions.gsconnect;
   };
 
-  fonts.packages = with pkgs; [
-    nerd-fonts.adwaita-mono
-  ];
-
   environment.systemPackages = with pkgs; [
     file-roller
     mission-center
+    ghostty
   ];
 }
