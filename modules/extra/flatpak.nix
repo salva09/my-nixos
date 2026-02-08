@@ -126,6 +126,13 @@ in
           "home"
         ];
       };
+
+      "com.usebottles.bottles".Context = {
+        filesytems = [
+          "xdg-data/Steam"
+          "~/Games"
+        ];
+      };
     };
   };
 }
