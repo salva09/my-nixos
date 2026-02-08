@@ -2,20 +2,15 @@
 
 {
   imports = [
-    # 1. Hardware Config (Relative path)
-    ./hardware.nix
+    ./hardware.nix # Hardware Config
+    ../../modules/core/default.nix # Core System Modules
+    ../../modules/desktop/default.nix # Core Desktop Modules
+    ../../modules/desktop/cosmic.nix # Desktop Environment
 
-    # 2. Core System Modules (Path to root)
-    ../../modules/core/boot.nix
-    ../../modules/core/system.nix
-
-    # 3. Desktop Environment
-    #../../modules/desktop/plasma.nix
-    ../../modules/desktop/dms.nix # Easy to toggle here!
-
-    # 4. User Config
-    ../../users/hm-defaults.nix # Was user/home.nix
-    ../../users/guest.nix
+    # Optional modules
+    ../../modules/extra/flatpak.nix
+    #../../modules/extra/gaming.nix
+    #../../modules/extra/virtualisation.nix
   ];
 
   networking.hostName = "vm";
@@ -24,6 +19,7 @@
   virtualisation.vmVariant = {
     # 1. Give it more RAM and Cores
     virtualisation = {
+      diskSize = 8192;
       memorySize = 4096; # 4GB RAM
       cores = 4; # 4 CPU Cores
       graphics = true; # Ensure it has a screen
