@@ -11,10 +11,9 @@
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-
-  # 1. The Root Subvolume (@)
+  
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/7efc6d6e-5e01-46f9-873d-f96322b1e429";
+    device = "/dev/disk/by-uuid/2558e191-16ca-4b7c-a756-09fe9b27bce4";
     fsType = "ext4";
     options = [
       "noatime"
@@ -22,7 +21,7 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/B8B6-AD50";
+    device = "/dev/disk/by-uuid/3F97-7EB6";
     fsType = "vfat";
     options = [
       "fmask=0077"
