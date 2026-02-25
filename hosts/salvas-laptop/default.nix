@@ -1,17 +1,14 @@
-{ ... }:
+{ config, ... }:
 
 {
   imports = [
-    ./hardware.nix
+    ./hardware.nix # Hardware Config
+    ../../modules/core/default.nix # Core System Modules
+    ../../modules/desktop/default.nix # Core Desktop Modules
+    ../../modules/desktop/plasma.nix # Desktop Environment
 
-    ../../modules/core/boot.nix
-    ../../modules/core/system.nix
-    ../../modules/core/flatpak.nix
-
-    ../../modules/desktop/gnome.nix
-
-    ../../users/hm-defaults.nix
-    ../../users/salva.nix
+    ../../modules/extra/postgres.nix
+    ../../modules/extra/gaming.nix
   ];
 
   networking.hostName = "salvas-laptop";
