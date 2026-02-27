@@ -12,11 +12,9 @@
   environment.gnome.excludePackages = with pkgs; [
     gnome-tour
     gnome-user-docs
-    gnome-music
     gnome-software
     geary
     gnome-system-monitor
-    gnome-console
   ];
 
   programs.kdeconnect = {
