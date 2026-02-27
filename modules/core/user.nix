@@ -31,6 +31,7 @@ in
       "networkmanager"
       "wheel"
       "gamemode"
+      "i2c"
     ];
     autoSubUidGidRange = true;
   };
