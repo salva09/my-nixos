@@ -15,7 +15,7 @@ let
   communication = [
     "com.discordapp.Discord"
     "org.mozilla.Thunderbird"
-    "io.github.tobagin.karere" # WhatsApp
+    "com.rtosta.zapzap" # WhatsApp
     "org.localsend.localsend_app"
   ];
 
@@ -101,6 +101,7 @@ in
         Context.filesystems = [
           "/nix/store:ro"
           "xdg-config/MangoHud"
+          "xdg-config/gtk-3.0:ro"
           "xdg-config/gtk-4.0:ro"
         ]
         ++ lib.optionals isDesktop [ "/mnt/data" ];
