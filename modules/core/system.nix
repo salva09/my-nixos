@@ -30,9 +30,20 @@
 
     # Keychron M6 Mouse (2.4GHz Dongle)
     KERNEL=="hidraw*", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="0360", MODE="0666", GROUP="users"
+
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0666"
   '';
 
   documentation.nixos.enable = false;
+
+  programs.appimage.enable = true;
+  programs.appimage.binfmt = true;
+  programs.appimage.package = pkgs.appimage-run.override {
+    extraPkgs = pkgs: [
+      pkgs.hidapi
+      pkgs.udev
+    ];
+  };
 
   programs.nh = {
     enable = true;
