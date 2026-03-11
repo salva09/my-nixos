@@ -15,7 +15,7 @@ let
   communication = [
     "com.discordapp.Discord"
     "org.mozilla.Thunderbird"
-    "com.rtosta.zapzap" # WhatsApp
+    "io.github.tobagin.karere" # WhatsApp
     "org.localsend.localsend_app"
   ];
 
@@ -39,6 +39,7 @@ let
   media = [
     "com.dec05eba.gpu_screen_recorder"
     "info.febvre.Komikku" # Manga reader
+    "com.github.unrud.VideoDownloader"
   ];
 
   utilities = [
@@ -50,6 +51,7 @@ let
     "ca.desrt.dconf-editor"
     "io.github.fabrialberio.pinapp"
     "io.github.alainm23.planify"
+    "com.sidevesh.Luminance"
   ];
 
   gaming = [
@@ -63,7 +65,7 @@ let
     "com.vysp3r.ProtonPlus"
     "io.github.Foldex.AdwSteamGtk"
     "io.github.radiolamp.mangojuice"
-    #"io.github.wivrn.wivrn" # VR Streaming
+    "io.github.wivrn.wivrn" # VR Streaming
     "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08"
   ];
 
