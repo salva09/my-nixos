@@ -58,7 +58,6 @@
   services.lact.enable = false;
 
   environment.systemPackages = with pkgs; [
-    r2modman
     lumafly
     mangohud
   ];
