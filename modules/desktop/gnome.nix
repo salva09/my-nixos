@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   ...
 }:
 
@@ -15,6 +14,7 @@
     gnome-software
     geary
     gnome-system-monitor
+    gnome-console
   ];
 
   programs.kdeconnect = {
@@ -27,4 +27,13 @@
     mission-center
     ghostty
   ];
+
+  xdg.terminal-exec = {
+    enable = true;
+    settings = {
+      gnome = [
+        "ghostty.desktop"
+      ];
+    };
+  };
 }
