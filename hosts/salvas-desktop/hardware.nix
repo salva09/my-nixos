@@ -8,12 +8,12 @@
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-  
+
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/2558e191-16ca-4b7c-a756-09fe9b27bce4";
+    device = "/dev/disk/by-uuid/ea0ac59b-26d3-4bf4-9dae-ba191334827b";
     fsType = "ext4";
     options = [
       "noatime"
@@ -21,7 +21,7 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/3F97-7EB6";
+    device = "/dev/disk/by-uuid/6824-2B14";
     fsType = "vfat";
     options = [
       "fmask=0077"
