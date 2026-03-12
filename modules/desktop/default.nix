@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   services.dbus.implementation = "broker";
@@ -6,6 +6,8 @@
   services.upower.enable = true;
   services.libinput.enable = true;
   hardware.uinput.enable = true;
+
+  hardware.i2c.enable = true;
 
   services.printing.enable = false;
 
