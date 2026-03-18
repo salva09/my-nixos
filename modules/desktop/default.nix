@@ -5,7 +5,6 @@
 
   services.upower.enable = true;
   services.libinput.enable = true;
-  hardware.uinput.enable = true;
 
   hardware.i2c.enable = true;
 

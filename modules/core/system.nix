@@ -24,16 +24,6 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
 
-  services.udev.extraRules = ''
-    # Keychron M6 Mouse (USB)
-    KERNEL=="hidraw*", ATTRS{idVendor}=="3434", MODE="0666", GROUP="users"
-
-    # Keychron M6 Mouse (2.4GHz Dongle)
-    KERNEL=="hidraw*", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="0360", MODE="0666", GROUP="users"
-
-    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0666"
-  '';
-
   documentation.nixos.enable = false;
 
   programs.appimage.enable = true;
