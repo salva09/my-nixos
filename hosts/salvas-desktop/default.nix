@@ -9,7 +9,7 @@
 
     # Optional modules
     ../../modules/extra/flatpak.nix
-    ../../modules/extra/gaming.nix
+    ../../modules/extra/peripherals.nix
     ../../modules/extra/virtualisation.nix
   ];
 
