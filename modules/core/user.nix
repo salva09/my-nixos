@@ -69,15 +69,4 @@ in
       done
     '';
   };
-
-  fileSystems = lib.mkIf isDesktop {
-    "/home/salva/.var" = {
-      device = "/mnt/data/.var";
-      options = [
-        "bind"
-        "nofail"
-        "x-gvfs-hide"
-      ];
-    };
-  };
 }
