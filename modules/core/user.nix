@@ -17,7 +17,6 @@ let
     "Videos"
     "Games"
     "Downloads"
-    "AppImages"
   ];
 in
 {
