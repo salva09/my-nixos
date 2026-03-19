@@ -8,7 +8,6 @@
     ../../modules/desktop/gnome.nix # Desktop Environment
 
     # Optional modules
-    ../../modules/extra/flatpak.nix
     ../../modules/extra/peripherals.nix
     ../../modules/extra/virtualisation.nix
   ];

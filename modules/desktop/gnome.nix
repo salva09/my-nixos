@@ -23,6 +23,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    bazaar
     file-roller
     mission-center
     ghostty

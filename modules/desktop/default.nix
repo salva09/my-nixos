@@ -20,4 +20,6 @@
   };
 
   services.tuned.enable = true;
+
+  services.flatpak.enable = true;
 }
