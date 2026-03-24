@@ -20,10 +20,18 @@
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
     gamescopeSession.enable = false;
 
-    # Experimental feature: Enables steam input with PROTON_ENABLE_WAYLAND=1
-    # package = pkgs.steam.override {
-    #   extraArgs = "-steamos3";
-    # };
+    extest.enable = true;
+
+    extraCompatPackages = with pkgs; [
+      proton-ge-bin
+    ];
+
+    package = pkgs.steam.override {
+      extraArgs = "-steamos3";
+      extraEnv = {
+        PROTON_ENABLE_WAYLAND = "1";
+      };
+    };
   };
 
   programs.gamemode = {
@@ -50,7 +58,6 @@
   services.lact.enable = false;
 
   environment.systemPackages = with pkgs; [
-    r2modman
     lumafly
     mangohud
   ];

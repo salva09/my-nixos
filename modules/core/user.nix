@@ -31,6 +31,7 @@ in
       "networkmanager"
       "wheel"
       "gamemode"
+      "i2c"
     ];
     autoSubUidGidRange = true;
   };
@@ -66,16 +67,5 @@ in
         fi
       done
     '';
-  };
-
-  fileSystems = lib.mkIf isDesktop {
-    "/home/salva/.var" = {
-      device = "/mnt/data/.var";
-      options = [
-        "bind"
-        "nofail"
-        "x-gvfs-hide"
-      ];
-    };
   };
 }

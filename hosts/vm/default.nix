@@ -8,7 +8,7 @@
     ../../modules/desktop/cosmic.nix # Desktop Environment
 
     # Optional modules
-    ../../modules/extra/flatpak.nix
+    #../../modules/extra/flatpak.nix
     #../../modules/extra/gaming.nix
     #../../modules/extra/virtualisation.nix
   ];
@@ -29,6 +29,7 @@
     # VMs often default to 800x600. This helps force a larger window.
     virtualisation.qemu.options = [
       "-vga virtio"
+      "-device virtio-gpu-gl"
       "-display gtk,gl=on" # Use GTK with OpenGL acceleration
     ];
   };
