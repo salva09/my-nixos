@@ -1,66 +1,56 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   services.displayManager.dms-greeter = {
     enable = true;
     configHome = "/home/salva";
     compositor.name = "niri";
+    package = inputs.dms.packages.${pkgs.stdenv.hostPlatform.system}.default;
   };
 
-  networking.networkmanager.enable = true;
-  hardware.bluetooth.enable = true;
-  services.power-profiles-daemon.enable = true;
-  services.upower.enable = true;
-
+  nixpkgs.overlays = [ inputs.niri.overlays.niri ];
+  programs.niri.package = pkgs.niri-unstable;
   programs.niri.enable = true;
 
   programs.dms-shell = {
     enable = true;
+    package = inputs.dms.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell;
+
+    systemd = {
+      enable = true; # Systemd service for auto-start
+      restartIfChanged = true; # Auto-restart dms.service when dms-shell changes
+    };
 
     # Core features
     enableSystemMonitoring = true; # System monitoring widgets (dgop)
-    enableClipboard = true; # Clipboard history manager
     enableVPN = true; # VPN management widget
     enableDynamicTheming = true; # Wallpaper-based theming (matugen)
     enableAudioWavelength = true; # Audio visualizer (cava)
     enableCalendarEvents = true; # Calendar integration (khal)
+    enableClipboardPaste = true; # Pasting from the clipboard history (wtype)
   };
 
-  home-manager.sharedModules = [
-    (
-      { pkgs, ... }:
-      {
-        gtk = {
-          enable = true;
+  programs.dsearch = {
+    enable = true;
 
-          cursorTheme = {
-            name = "Adwaita";
-            package = pkgs.adwaita-icon-theme;
-          };
+    package = inputs.danksearch.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
-          font = {
-            name = "Adwaita Sans";
-            size = 11;
-            package = pkgs.adwaita-fonts;
-          };
+    systemd = {
+      enable = true; # Enable systemd user service
+      target = "default.target"; # Start with user session
+    };
+  };
 
-          iconTheme = {
-            name = "Adwaita";
-            package = pkgs.adwaita-icon-theme;
-          };
+  programs.kdeconnect.enable = true;
 
-          gtk3 = {
-            enable = true;
-
-            theme = {
-              name = "adw-gtk3";
-              package = pkgs.adw-gtk3;
-            };
-          };
-        };
-      }
-    )
-  ];
+  environment.sessionVariables = {
+    XDG_CURRENT_DESKTOP = "niri";
+    QT_QPA_PLATFORM = "wayland";
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    QT_QPA_PLATFORMTHEME = "gtk3";
+    QT_QPA_PLATFORMTHEME_QT6 = "qt6ct";
+  };
 
   # services.gnome.gnome-keyring.enable = true;
   services.gnome.core-apps.enable = true;
@@ -74,6 +64,13 @@
 
   environment.systemPackages = with pkgs; [
     xwayland-satellite
+    adw-gtk3
+    qt6Packages.qt6ct
+    adwaita-icon-theme
+
+    ghostty
+    bazaar
+    mission-center
   ];
 
   fonts.packages = with pkgs; [
