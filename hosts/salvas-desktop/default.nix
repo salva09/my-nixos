@@ -5,7 +5,7 @@
     ./hardware.nix # Hardware Config
     ../../modules/core/default.nix # Core System Modules
     ../../modules/desktop/default.nix # Core Desktop Modules
-    ../../modules/desktop/gnome.nix # Desktop Environment
+    ../../modules/desktop/cosmic.nix # Desktop Environment
 
     # Optional modules
     ../../modules/extra/peripherals.nix
@@ -17,9 +17,9 @@
 
   services.displayManager = {
     autoLogin = {
-      enable = true;
+      enable = false;
       user = "salva";
     };
-    defaultSession = "gnome";
+    defaultSession = "cosmic";
   };
 }
