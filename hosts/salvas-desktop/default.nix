@@ -17,7 +17,7 @@
 
   services.displayManager = {
     autoLogin = {
-      enable = false;
+      enable = true;
       user = "salva";
     };
     defaultSession = "cosmic";
