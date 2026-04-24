@@ -14,12 +14,12 @@
       proton-ge-bin
     ];
 
-    package = pkgs.steam.override {
-      extraArgs = "-steamos3";
-      extraEnv = {
-        PROTON_ENABLE_WAYLAND = "1";
-      };
-    };
+    # package = pkgs.steam.override {
+    #   extraArgs = "-steamos3";
+    #   extraEnv = {
+    #     PROTON_ENABLE_WAYLAND = "1";
+    #   };
+    # };
   };
 
   programs.gamemode = {
