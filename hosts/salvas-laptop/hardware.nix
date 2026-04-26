@@ -8,7 +8,7 @@
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto;
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
