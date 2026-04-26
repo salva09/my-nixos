@@ -49,6 +49,7 @@
     extraPkgs = pkgs: [
       pkgs.hidapi
       pkgs.udev
+      pkgs.icu
       pkgs.gsettings-desktop-schemas
       pkgs.gtk3
     ];
