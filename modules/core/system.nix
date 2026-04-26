@@ -5,17 +5,21 @@
     package = pkgs.lix;
 
     settings = {
+      use-xdg-base-directories = true;
       auto-optimise-store = true;
+      max-jobs = 2;
+      cores = 2;
+
       experimental-features = [
         "nix-command"
         "flakes"
       ];
-      use-xdg-base-directories = true;
 
       substituters = [
         "https://nix-community.cachix.org"
         "https://attic.xuyh0120.win/lantian"
       ];
+
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
