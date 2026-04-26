@@ -5,11 +5,12 @@
     ./hardware.nix # Hardware Config
     ../../modules/core/default.nix # Core System Modules
     ../../modules/desktop/default.nix # Core Desktop Modules
-    ../../modules/desktop/gnome.nix # Desktop Environment
+    ../../modules/desktop/cosmic.nix # Desktop Environment
 
     # Optional modules
     ../../modules/extra/peripherals.nix
     ../../modules/extra/virtualisation.nix
+    ../../modules/extra/gaming.nix
   ];
 
   networking.hostName = "salvas-desktop";
@@ -19,6 +20,6 @@
       enable = true;
       user = "salva";
     };
-    defaultSession = "gnome";
+    defaultSession = "cosmic";
   };
 }

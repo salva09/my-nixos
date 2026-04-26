@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   nix = {
@@ -11,6 +11,15 @@
         "flakes"
       ];
       use-xdg-base-directories = true;
+
+      substituters = [
+        "https://nix-community.cachix.org"
+        "https://attic.xuyh0120.win/lantian"
+      ];
+      trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+      ];
     };
   };
 
@@ -20,7 +29,11 @@
 
   system.etc.overlay.enable = true;
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+
+    overlays = [ inputs.cachyos.overlays.pinned ];
+  };
 
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -33,6 +46,8 @@
       pkgs.hidapi
       pkgs.udev
       pkgs.icu
+      pkgs.gsettings-desktop-schemas
+      pkgs.gtk3
     ];
   };
 

@@ -7,6 +7,7 @@
   services.libinput.enable = true;
 
   hardware.i2c.enable = true;
+  hardware.bluetooth.enable = true;
 
   services.printing.enable = false;
 
