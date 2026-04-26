@@ -32,6 +32,7 @@
     extraPkgs = pkgs: [
       pkgs.hidapi
       pkgs.udev
+      pkgs.icu
     ];
   };
 

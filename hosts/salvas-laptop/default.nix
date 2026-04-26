@@ -1,8 +1,9 @@
-{ config, ... }:
+{ ... }:
 
 {
   imports = [
     ./hardware.nix # Hardware Config
+    ./ghelper.nix
     ../../modules/core/default.nix # Core System Modules
     ../../modules/desktop/default.nix # Core Desktop Modules
     ../../modules/desktop/plasma.nix # Desktop Environment
