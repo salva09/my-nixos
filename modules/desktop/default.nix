@@ -9,6 +9,9 @@
   hardware.i2c.enable = true;
   hardware.bluetooth.enable = true;
 
+  networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
+
   services.printing.enable = false;
 
   services.pulseaudio.enable = false;
