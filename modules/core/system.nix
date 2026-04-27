@@ -2,8 +2,6 @@
 
 {
   nix = {
-    package = pkgs.lix;
-
     settings = {
       use-xdg-base-directories = true;
       auto-optimise-store = true;
