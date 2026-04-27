@@ -5,8 +5,8 @@
     settings = {
       use-xdg-base-directories = true;
       auto-optimise-store = true;
-      max-jobs = 2;
-      cores = 2;
+      max-jobs = 1;
+      cores = 8;
 
       experimental-features = [
         "nix-command"
