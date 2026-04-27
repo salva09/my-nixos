@@ -26,8 +26,6 @@
   environment.systemPackages = with pkgs; [
     file-roller
     mission-center
-    loupe
-    papers
     ghostty
     adw-gtk3
   ];
