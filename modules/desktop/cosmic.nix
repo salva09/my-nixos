@@ -31,4 +31,8 @@
     ghostty
     adw-gtk3
   ];
+
+  fonts.packages = [
+    pkgs.adwaita-fonts
+  ];
 }
