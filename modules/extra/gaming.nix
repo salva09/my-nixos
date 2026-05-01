@@ -37,9 +37,4 @@
       };
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    lumafly
-    mangohud
-  ];
 }
