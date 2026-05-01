@@ -53,6 +53,8 @@
     ];
   };
 
+  programs.nix-ld.enable = true;
+
   programs.nh = {
     enable = true;
     clean.enable = true;
