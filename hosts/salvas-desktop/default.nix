@@ -9,8 +9,8 @@
 
     # Optional modules
     ../../modules/extra/peripherals.nix
-    ../../modules/extra/virtualisation.nix
     ../../modules/extra/gaming.nix
+    ../../modules/extra/overlays.nix
   ];
 
   networking.hostName = "salvas-desktop";
