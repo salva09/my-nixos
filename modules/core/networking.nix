@@ -2,6 +2,8 @@
 
 {
   networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
+  networking.useNetworkd = true;
 
   networking.firewall = {
     enable = true;
