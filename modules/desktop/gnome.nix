@@ -28,13 +28,4 @@
     mission-center
     ghostty
   ];
-
-  xdg.terminal-exec = {
-    enable = true;
-    settings = {
-      gnome = [
-        "ghostty.desktop"
-      ];
-    };
-  };
 }
