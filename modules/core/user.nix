@@ -36,13 +36,10 @@ in
     autoSubUidGidRange = true;
   };
 
-  # 1. Ensure the mount point exists and has the right permissions
-  # (Put this in your main configuration.nix or here if this file is always active)
   systemd.tmpfiles.rules = lib.mkIf isDesktop [
     "d /mnt/data 0755 ${username} users -"
   ];
 
-  # 2. Replace Bind Mounts with Symlinks
   system.userActivationScripts.linkSecondaryDrive = lib.mkIf isDesktop {
     text = ''
       # Ensure the source directories exist on the HDD
