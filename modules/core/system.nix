@@ -26,8 +26,8 @@
   };
 
   # Experimental features
-  system.nixos-init.enable = false; # Causes issues with distrobox
-  services.userborn.enable = false; # Causes issues with distrobox
+  system.nixos-init.enable = true; # Causes issues with distrobox
+  services.userborn.enable = true; # Causes issues with distrobox
 
   system.etc.overlay.enable = true;
 
