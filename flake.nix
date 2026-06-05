@@ -1,12 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     cachyos.url = "github:xddxdd/nix-cachyos-kernel";
-    niri.url = "github:sodiboo/niri-flake";
-    quickshell.url = "git+https://git.outfoxxed.me/quickshell/quickshell";
-    dms.url = "github:AvengeMedia/DankMaterialShell/stable";
-    danksearch.url = "github:AvengeMedia/danksearch";
   };
 
   outputs =
