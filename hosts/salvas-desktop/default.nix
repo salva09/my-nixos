@@ -13,6 +13,8 @@
     ../../modules/extra/overlays.nix
   ];
 
+  overlays.cosmic.enable = false;
+
   networking.hostName = "salvas-desktop";
 
   services.displayManager = {
