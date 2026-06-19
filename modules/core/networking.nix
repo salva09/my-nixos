@@ -5,16 +5,28 @@
   networking.networkmanager.wifi.backend = "iwd";
   networking.useNetworkd = true;
 
+  networking.nftables.enable = true;
+
   networking.firewall = {
     enable = true;
-    backend = "firewalld";
 
     allowedTCPPorts = [
       53317 # Localsend
+      25565 # Minecraft
+    ];
+
+    allowedTCPPortRanges = [
+      {
+        from = 1024;
+        to = 65535;
+      }
     ];
 
     allowedUDPPorts = [
       53317 # Localsend
+      44453 # Minecraft
+      4445
+      1900
     ];
   };
 
