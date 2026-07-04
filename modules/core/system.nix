@@ -8,6 +8,11 @@
       max-jobs = 1;
       cores = 8;
 
+      trusted-users = [
+        "root"
+        "salva"
+      ];
+
       experimental-features = [
         "nix-command"
         "flakes"
