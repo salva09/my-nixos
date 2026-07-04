@@ -27,10 +27,10 @@ in
           final: prev:
           let
             src = prev.fetchFromGitHub {
-              owner = "thefossguy";
+              owner = "salva09";
               repo = "nixpkgs";
-              rev = "0a4059a6c34e781df8c0c7903b190558b3064b24";
-              hash = "sha256-EfTCYAUDjTAknS8XVTsMIrtvSwCcQKktiEC8eBGyPwo=";
+              rev = "c3c4c8bdf9391268af966d1daaf11f360d56b47c";
+              hash = "sha256-bi8/qA76wE34jBqmx+oF8SnGF1phto6qMscRqDQqjqk=";
             };
 
             byName = name: "${src}/pkgs/by-name/${builtins.substring 0 2 name}/${name}/package.nix";
@@ -61,6 +61,8 @@ in
               "cosmic-wallpapers"
               "cosmic-workspaces-epoch"
               "xdg-desktop-portal-cosmic"
+              "cosmic-protocols"
+              "cosmic-monitor"
             ];
           in
           prev.lib.genAttrs pkgNames (
