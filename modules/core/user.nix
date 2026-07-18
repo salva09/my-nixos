@@ -30,6 +30,10 @@ in
         exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
       fi
     '';
+
+    loginShellInit = ''
+      export SSH_AUTH_SOCK=/home/salva/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock
+    '';
   };
 
   environment.systemPackages = with pkgs; [
