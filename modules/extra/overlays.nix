@@ -6,18 +6,12 @@
 
 let
   cosmicCfg = config.overlays.cosmic;
-  # futureCfg = config.overlays.futureOverlay;
 in
 {
   options.overlays = {
     cosmic = {
       enable = lib.mkEnableOption "the latest COSMIC packages overlay";
     };
-
-    # Example Future Overlay Toggle
-    # discord-canary = {
-    #   enable = lib.mkEnableOption "Discord Canary overlay";
-    # };
   };
 
   config = lib.mkMerge [
@@ -29,15 +23,15 @@ in
             src = prev.fetchFromGitHub {
               owner = "salva09";
               repo = "nixpkgs";
-              rev = "c3c4c8bdf9391268af966d1daaf11f360d56b47c";
-              hash = "sha256-bi8/qA76wE34jBqmx+oF8SnGF1phto6qMscRqDQqjqk=";
+              rev = "789991c4867f1391fdf4be69e9f3fa07a39958c9";
+              hash = "sha256-9h1rdPN/doJ6ldWg93baGw+Q3w8ATTgFf7C8tAQr2xI=";
             };
 
             byName = name: "${src}/pkgs/by-name/${builtins.substring 0 2 name}/${name}/package.nix";
 
             pkgNames = [
               "cosmic-applets"
-              "cosmic-applibrary"
+              "cosmic-app-library"
               "cosmic-bg"
               "cosmic-comp"
               "cosmic-edit"
@@ -74,14 +68,5 @@ in
         )
       ];
     })
-
-    # --- FUTURE OVERLAY PLACEHOLDER ---
-    # (lib.mkIf config.overlays.discord-canary.enable {
-    #   nixpkgs.overlays = [
-    #     (final: prev: {
-    #       # your future overlay definitions here
-    #     })
-    #   ];
-    # })
   ];
 }
