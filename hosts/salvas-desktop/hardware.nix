@@ -12,31 +12,54 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/ea0ac59b-26d3-4bf4-9dae-ba191334827b";
-    fsType = "ext4";
-    options = [
-      "noatime"
-    ];
-  };
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/28202933-f06f-49fe-86ea-4271980c3257";
+      fsType = "btrfs";
+      options = [
+        "subvol=root"
+        "compress=zstd"
+      ];
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/6824-2B14";
-    fsType = "vfat";
-    options = [
-      "fmask=0077"
-      "dmask=0077"
-    ];
-  };
+    "/home" = {
+      device = "/dev/disk/by-uuid/28202933-f06f-49fe-86ea-4271980c3257";
+      fsType = "btrfs";
+      options = [
+        "subvol=home"
+        "compress=zstd"
+      ];
+    };
 
-  fileSystems."/mnt/data" = {
-    device = "/dev/disk/by-uuid/8c47ea35-550b-47af-8b51-11007fa79e8a";
-    fsType = "ext4";
-    options = [
-      "defaults"
-      "nofail"
-      "noatime"
-    ];
+    "/nix" = {
+      device = "/dev/disk/by-uuid/28202933-f06f-49fe-86ea-4271980c3257";
+      fsType = "btrfs";
+      options = [
+        "subvol=nix"
+        "compress=zstd"
+        "noatime"
+      ];
+    };
+
+    "/boot" = {
+      device = "/dev/disk/by-uuid/EE55-041F";
+      fsType = "vfat";
+      options = [
+        "fmask=0077"
+        "dmask=0077"
+      ];
+    };
+
+    "/mnt/data" = {
+      device = "/dev/disk/by-uuid/779d72b4-ddb4-4d83-a6a0-d34fc2f9fd51";
+      fsType = "xfs";
+      options = [
+        "defaults"
+        "nofail"
+        "noatime"
+        "x-gvfs-show"
+      ];
+    };
   };
 
   zramSwap.enable = true;
