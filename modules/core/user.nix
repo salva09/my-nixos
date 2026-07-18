@@ -7,26 +7,12 @@
 
 let
   username = "salva";
-  isDesktop = config.networking.hostName == "salvas-desktop";
-
-  # Directories to link from /mnt/data to /home/salva
-  userDirs = [
-    "Documents"
-    "Music"
-    "Pictures"
-    "Videos"
-    "Games"
-    "Downloads"
-  ];
 in
 {
-  programs.fish.enable = true;
-
   users.users.${username} = {
     isNormalUser = true;
     description = "Salva";
     hashedPassword = "$y$j9T$6OkXEdC.0DHcfOHn7gouE1$8xxgexZ8DsZaQyT6knFQhPZXWH654ltVEIq.dKIo8W7";
-    shell = pkgs.fish;
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -36,33 +22,19 @@ in
     autoSubUidGidRange = true;
   };
 
-  systemd.tmpfiles.rules = lib.mkIf isDesktop [
-    "d /mnt/data 0755 ${username} users -"
-  ];
-
-  system.userActivationScripts.linkSecondaryDrive = lib.mkIf isDesktop {
-    text = ''
-      # Ensure the source directories exist on the HDD
-      for dir in ${builtins.concatStringsSep " " userDirs}; do
-        mkdir -p /mnt/data/$dir
-      done
-
-      # Create the symlinks in the home directory
-      for dir in ${builtins.concatStringsSep " " userDirs}; do
-        target="/home/${username}/$dir"
-        source="/mnt/data/$dir"
-
-        # Remove existing empty directories or old links to prevent conflicts
-        if [ -d "$target" ] && [ ! -L "$target" ]; then
-          rmdir "$target" 2>/dev/null || echo "Warning: $target is not empty, skipping link."
-        fi
-
-        # Create link if it doesn't exist
-        if [ ! -e "$target" ]; then
-          ln -s "$source" "$target"
-          chown -h ${username}:users "$target"
-        fi
-      done
+  programs.bash = {
+    interactiveShellInit = ''
+      if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+      then
+        shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+        exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
+      fi
     '';
   };
+
+  environment.systemPackages = with pkgs; [
+    fishPlugins.tide
+  ];
+
+  programs.fish.enable = true;
 }
