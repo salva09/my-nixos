@@ -1,23 +1,19 @@
-{ ... }:
+{
+  ...
+}:
 
 {
   imports = [
-    ./hardware.nix # Hardware Config
-    ../../modules/core/default.nix # Core System Modules
-    ../../modules/desktop/default.nix # Core Desktop Modules
-    ../../modules/desktop/gnome.nix # Desktop Environment
-
-    # Optional modules
-    #../../modules/extra/flatpak.nix
-    #../../modules/extra/gaming.nix
-    #../../modules/extra/virtualisation.nix
+    ./hardware.nix
+    ../../modules/core/default.nix
+    ../../modules/desktop/default.nix
+    ../../modules/desktop/cosmic.nix
   ];
 
   networking.hostName = "vm";
 
   # This config ONLY applies when you use 'build-vm'
   virtualisation.vmVariant = {
-    # 1. Give it more RAM and Cores
     virtualisation = {
       diskSize = 8192;
       memorySize = 4096; # 4GB RAM
