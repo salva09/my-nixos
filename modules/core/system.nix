@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   nix = {
@@ -17,16 +17,6 @@
         "nix-command"
         "flakes"
       ];
-
-      substituters = [
-        "https://nix-community.cachix.org"
-        "https://attic.xuyh0120.win/lantian"
-      ];
-
-      trusted-public-keys = [
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
-      ];
     };
   };
 
@@ -36,11 +26,7 @@
 
   system.etc.overlay.enable = true;
 
-  nixpkgs = {
-    config.allowUnfree = true;
-
-    overlays = [ inputs.cachyos.overlays.pinned ];
-  };
+  nixpkgs.config.allowUnfree = true;
 
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -59,6 +45,10 @@
   };
 
   programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    glibc
+    stdenv.cc.cc.lib
+  ];
 
   programs.nh = {
     enable = true;
