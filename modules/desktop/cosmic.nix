@@ -20,6 +20,7 @@
     gnome-calculator
     loupe
     baobab
+    nautilus
   ];
 
   services.gnome.gcr-ssh-agent.enable = false;
